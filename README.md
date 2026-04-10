@@ -1,6 +1,6 @@
 # Drift Pursuit — _Deterministic Urban Pursuit_
 
-- Terminal Premium Urban Pursuit🏁
+- drift gameplay🏁
 - Evasion & Tactical Mobility Simulation Platform🏆
 
 > Terminal ASCII Premium. Replayable. Explainable
