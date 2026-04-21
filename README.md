@@ -11,3 +11,53 @@
 ![CLI](https://img.shields.io/badge/interface-CLI-black)
 
 ---
+
+## 🧠 What is Drift Pursuit  / Why It Exists
+
+---
+
+## 🧱 Core Capabilities
+
+---
+
+## ⚙️ System Architecture
+
+---
+
+## 🏛️ Project Structure
+
+---
+
+## 🚀 Getting Started
+
+1. 📦 Installation
+
+2. Run
+
+---
+
+## 🎮 CLI Experience
+
+At launch:
+
+---
+
+## 🎬 Terminal Preview
+
+---
+
+## 📊 Example Output
+
+---
+
+## ⚙️ Engineering Notes
+
+---
+
+## 👨‍💻 Author
+
+---
+
+## 📄 License
+
+MIT License
