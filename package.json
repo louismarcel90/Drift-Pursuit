@@ -1,0 +1,42 @@
+{
+  "name": "drift-pursuit-grid",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Terminal-native deterministic urban pursuit, evasion, and tactical mobility simulation platform.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20.11.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @drift-pursuit-grid/terminal-client dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "test": "turbo run test",
+    "test:watch": "turbo run test:watch",
+    "clean": "turbo run clean && rimraf node_modules .turbo",
+    "verify": "pnpm typecheck && pnpm lint && pnpm test && pnpm format:check"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.27.0",
+    "@types/node": "22.15.3",
+    "@typescript-eslint/eslint-plugin": "^8.59.1",
+    "@typescript-eslint/parser": "^8.59.1",
+    "@vitest/coverage-v8": "^4.1.5",
+    "@vitest/ui": "^4.1.5",
+    "eslint": "9.27.0",
+    "prettier": "3.5.3",
+    "rimraf": "6.0.1",
+    "tsx": "4.19.4",
+    "turbo": "2.5.3",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.32.1",
+    "vite": "^8.0.10",
+    "vitest": "4.1.5"
+  },
+  "packageManager": "pnpm@9.15.9"
+}

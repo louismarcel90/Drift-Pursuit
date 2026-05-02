@@ -1,0 +1,21 @@
+{
+  "name": "@drift-pursuit-grid/terminal-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/main.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest --watch",
+    "clean": "rimraf dist coverage"
+  },
+  "dependencies": {
+    "@drift-pursuit-grid/contracts": "workspace:*"
+  },
+  "devDependencies": {
+    "@drift-pursuit-grid/shared-config": "workspace:*"
+  }
+}
