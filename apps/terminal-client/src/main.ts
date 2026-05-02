@@ -7,6 +7,16 @@ const snapshot: SimulationSnapshot = {
   mode: "showcase",
   missionStatus: "not-started",
   healthStatus: "nominal",
+  playerVehicle: {
+    id: "player-vehicle",
+    x: 12,
+    y: 8,
+    speed: 0,
+    headingDegrees: 0,
+    driftFactor: 0,
+    controlLevel: 1,
+  },
+  degradedModes: [],
 };
 
 const banner = [
@@ -20,8 +30,10 @@ const banner = [
   `Mode     : ${snapshot.mode}`,
   `Status   : ${snapshot.missionStatus}`,
   `Health   : ${snapshot.healthStatus}`,
+  `Vehicle  : ${snapshot.playerVehicle.id}`,
+  `Position : (${snapshot.playerVehicle.x}, ${snapshot.playerVehicle.y})`,
   "",
-  "STEP 2 foundation is running.",
+  "STEP 3 contracts are loaded.",
 ].join("\n");
 
 console.log(banner);
