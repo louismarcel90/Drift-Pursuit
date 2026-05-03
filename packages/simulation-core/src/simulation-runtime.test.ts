@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import type { PlayerCommand } from "./simulation-runtime.js";
+import type { PlayerCommand } from "@drift-pursuit-grid/contracts";
 
-import { advanceSimulationTick, createSimulationRuntime } from "./simulation-runtime.js";
 import { simulationPhaseOrder } from "./simulation-phase.js";
+import { advanceSimulationTick, createSimulationRuntime } from "./simulation-runtime.js";
 
 describe("SimulationRuntime", () => {
   it("advances ticks with a stable deterministic phase order", () => {
@@ -15,7 +15,7 @@ describe("SimulationRuntime", () => {
 
     const result = advanceSimulationTick(runtime, []);
 
-    expect(result.state.tick).toBe(1);
+    expect(result.state.authoritativeState.tick).toBe(1);
     expect(result.state.executedPhases).toEqual(simulationPhaseOrder);
   });
 
@@ -53,7 +53,7 @@ describe("SimulationRuntime", () => {
       secondRuntime = secondResult.state;
     }
 
-    expect(firstRuntime.events).toEqual(secondRuntime.events);
+    expect(firstRuntime.authoritativeState.events).toEqual(secondRuntime.authoritativeState.events);
     expect(firstRuntime.rng.state).toEqual(secondRuntime.rng.state);
     expect(firstRuntime.executedPhases).toEqual(secondRuntime.executedPhases);
   });

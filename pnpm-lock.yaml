@@ -108,6 +108,25 @@ importers:
       '@drift-pursuit-grid/domain':
         specifier: workspace:*
         version: link:../domain
+      '@drift-pursuit-grid/state-store':
+        specifier: workspace:*
+        version: link:../state-store
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
+  packages/state-store:
+    dependencies:
+      '@drift-pursuit-grid/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@drift-pursuit-grid/deterministic-rng':
+        specifier: workspace:*
+        version: link:../deterministic-rng
+      '@drift-pursuit-grid/domain':
+        specifier: workspace:*
+        version: link:../domain
     devDependencies:
       '@drift-pursuit-grid/shared-config':
         specifier: workspace:*

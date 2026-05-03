@@ -1,21 +1,26 @@
 export * from "./simulation-event.js";
 
 export type SimulationEvent =
-  | SimulationStartedEvent
-  | SimulationStoppedEvent
-  | TickAdvancedEvent;
+  | MissionStartedEvent
+  | PlayerCommandAcceptedEvent
+  | TrafficUpdatedEvent;
 
-export type SimulationStartedEvent = {
-  type: "simulation.started";
+export type MissionStartedEvent = {
+  kind: "mission-started";
+  tick: number;
+  message: string;
   scenarioId: string;
   seed: number;
 };
 
-export type SimulationStoppedEvent = {
-  type: "simulation.stopped";
+export type PlayerCommandAcceptedEvent = {
+  kind: "player-command-accepted";
+  tick: number;
+  message: string;
 };
 
-export type TickAdvancedEvent = {
-  type: "simulation.tick_advanced";
+export type TrafficUpdatedEvent = {
+  kind: "traffic-updated";
   tick: number;
+  message: string;
 };

@@ -1,4 +1,4 @@
-import type { PlayerCommand } from "@drift-pursuit-grid/simulation-core";
+import type { PlayerCommand } from "@drift-pursuit-grid/contracts";
 import { advanceSimulationTick, createSimulationRuntime } from "@drift-pursuit-grid/simulation-core";
 
 const commands: readonly PlayerCommand[] = [
@@ -30,8 +30,7 @@ for (let index = 0; index < 3; index += 1) {
   runtime = result.state;
 }
 
-const latestEvent = runtime.events[runtime.events.length - 1];
-
+const latestEvent = runtime.authoritativeState.events[runtime.authoritativeState.events.length - 1];
 const banner = [
   "╔══════════════════════════════════════════════════════════════╗",
   "║                    DRIFT PURSUIT GRID                       ║",
@@ -41,7 +40,7 @@ const banner = [
   `Scenario        : ${runtime.config.scenarioId}`,
   `Seed            : ${runtime.config.seed}`,
   `Tick Duration   : ${runtime.config.tickDurationMs}ms`,
-  `Current Tick    : ${runtime.tick}`,
+  `Current Tick    : ${runtime.authoritativeState.tick}`,
   `RNG Draws       : ${runtime.rng.state.draws}`,
   `Accepted Inputs : ${runtime.acceptedCommands.length}`,
   `Executed Phases : ${runtime.executedPhases.length}`,

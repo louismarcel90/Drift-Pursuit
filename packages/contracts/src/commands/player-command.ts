@@ -5,12 +5,7 @@ export type PlayerCommandKind =
   | "steer-right"
   | "handbrake"
   | "release-handbrake"
-  | "pause"
-  | "resume"
-  | "replay-step-forward"
-  | "replay-step-backward"
-  | "replay-fast-forward"
-  | "quit";
+  | "pause";
 
 export type PlayerCommandSource = "keyboard" | "replay" | "scenario-script";
 
