@@ -14,9 +14,15 @@
   },
   "dependencies": {
     "@drift-pursuit-grid/contracts": "workspace:*",
-    "@drift-pursuit-grid/domain": "workspace:*"
+    "@drift-pursuit-grid/domain": "workspace:*",
+    "@drift-pursuit-grid/simulation-core": "workspace:*"
+
   },
+  
   "devDependencies": {
-    "@drift-pursuit-grid/shared-config": "workspace:*"
+    "@drift-pursuit-grid/shared-config": "workspace:*",
+    "@drift-pursuit-grid/simulation-core": "workspace:*"
+
+    
   }
 }

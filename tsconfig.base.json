@@ -2,11 +2,22 @@
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["ES2022"],
-     "module": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "Bundler",
+    "paths": {
+      "@drift-pursuit-grid/contracts": ["./packages/contracts/src/index.ts"],
+      "@drift-pursuit-grid/domain": ["./packages/domain/src/index.ts"],
+      "@drift-pursuit-grid/deterministic-rng": ["./packages/deterministic-rng/src/index.ts"],
+      "@drift-pursuit-grid/simulation-core": ["./packages/simulation-core/src/index.ts"]
+    },
     "types": ["node", "vitest"],
-    "noEmit": true,
     "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "resolveJsonModule": true,
     "noImplicitOverride": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
@@ -14,14 +25,6 @@
     "noImplicitReturns": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "useUnknownInCatchVariables": false,
-    "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "declaration": true,
-    "declarationMap": true,
-    "sourceMap": true
+    "useUnknownInCatchVariables": false
   }
 }

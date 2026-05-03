@@ -65,12 +65,21 @@ importers:
       '@drift-pursuit-grid/domain':
         specifier: workspace:*
         version: link:../../packages/domain
+      '@drift-pursuit-grid/simulation-core':
+        specifier: workspace:*
+        version: link:../../packages/simulation-core
     devDependencies:
       '@drift-pursuit-grid/shared-config':
         specifier: workspace:*
         version: link:../../packages/shared-config
 
   packages/contracts:
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
+  packages/deterministic-rng:
     devDependencies:
       '@drift-pursuit-grid/shared-config':
         specifier: workspace:*
@@ -87,6 +96,22 @@ importers:
         version: link:../shared-config
 
   packages/shared-config: {}
+
+  packages/simulation-core:
+    dependencies:
+      '@drift-pursuit-grid/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@drift-pursuit-grid/deterministic-rng':
+        specifier: workspace:*
+        version: link:../deterministic-rng
+      '@drift-pursuit-grid/domain':
+        specifier: workspace:*
+        version: link:../domain
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
 
 packages:
 

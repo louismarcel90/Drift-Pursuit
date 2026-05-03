@@ -1,0 +1,13 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "../../",
+    "outDir": "dist"
+  },
+  "include": [
+    "src/**/*.ts",
+    "../contracts/src/**/*.ts",
+    "../domain/src/**/*.ts",
+    "../deterministic-rng/src/**/*.ts"
+  ]
+}

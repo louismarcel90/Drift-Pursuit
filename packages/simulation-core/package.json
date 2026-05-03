@@ -1,5 +1,5 @@
 {
-  "name": "@drift-pursuit-grid/domain",
+  "name": "@drift-pursuit-grid/simulation-core",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -16,14 +16,19 @@
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint .",
-    "test": "vitest run --passWithNoTests",
+    "test": "vitest run",
     "test:watch": "vitest --watch",
     "clean": "rimraf dist coverage"
   },
   "dependencies": {
-    "@drift-pursuit-grid/contracts": "workspace:*"
+    "@drift-pursuit-grid/contracts": "workspace:*",
+    "@drift-pursuit-grid/deterministic-rng": "workspace:*",
+    "@drift-pursuit-grid/domain": "workspace:*"
   },
   "devDependencies": {
-    "@drift-pursuit-grid/shared-config": "workspace:*"
+    "@drift-pursuit-grid/shared-config": "workspace:*",
+    "@drift-pursuit-grid/domain": "workspace:*",
+    "@drift-pursuit-grid/contracts": "workspace:*",
+    "@drift-pursuit-grid/deterministic-rng": "workspace:*"
   }
 }

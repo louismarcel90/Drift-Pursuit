@@ -1,8 +1,14 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist"
+    "outDir": "dist",
+    "rootDir": "../../"
   },
-  "include": ["src/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "../../packages/simulation-core/src/**/*.ts",
+    "../../packages/contracts/src/**/*.ts",
+    "../../packages/domain/src/**/*.ts",
+    "../../packages/deterministic-rng/src/**/*.ts"
+  ]
 }
