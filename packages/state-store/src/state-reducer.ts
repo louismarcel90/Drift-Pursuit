@@ -1,7 +1,7 @@
 import type { MissionStatus, SimulationEvent } from "@drift-pursuit-grid/contracts";
-import type { PlayerVehicle, PursuitState } from "@drift-pursuit-grid/domain";
+import type { PlayerVehicle, PursuitState, TrafficVehicle } from "@drift-pursuit-grid/domain";
 
-import type { AuthoritativeSimulationState } from "../src/authoritative-state.js";
+import type { AuthoritativeSimulationState } from "./authoritative-state.js";
 import { assertAuthoritativeStateIsValid } from "./state-guards.js";
 
 export type StateTransition =
@@ -12,6 +12,10 @@ export type StateTransition =
   | {
       readonly kind: "replace-player-vehicle";
       readonly playerVehicle: PlayerVehicle;
+    }
+  | {
+      readonly kind: "replace-traffic-vehicles";
+      readonly trafficVehicles: readonly TrafficVehicle[];
     }
   | {
       readonly kind: "replace-pursuit-state";
@@ -52,6 +56,12 @@ function applyTransition(
       return {
         ...state,
         playerVehicle: transition.playerVehicle,
+      };
+
+    case "replace-traffic-vehicles":
+      return {
+        ...state,
+        trafficVehicles: transition.trafficVehicles,
       };
 
     case "replace-pursuit-state":

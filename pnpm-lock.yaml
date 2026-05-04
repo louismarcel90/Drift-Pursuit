@@ -111,6 +111,9 @@ importers:
       '@drift-pursuit-grid/state-store':
         specifier: workspace:*
         version: link:../state-store
+      '@drift-pursuit-grid/traffic-engine':
+        specifier: workspace:*
+        version: link:../traffic-engine
       '@drift-pursuit-grid/vehicle-dynamics':
         specifier: workspace:*
         version: link:../vehicle-dynamics
@@ -130,6 +133,25 @@ importers:
       '@drift-pursuit-grid/domain':
         specifier: workspace:*
         version: link:../domain
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
+  packages/traffic-engine:
+    dependencies:
+      '@drift-pursuit-grid/deterministic-rng':
+        specifier: workspace:*
+        version: link:../deterministic-rng
+      '@drift-pursuit-grid/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@drift-pursuit-grid/state-store':
+        specifier: workspace:*
+        version: link:../state-store
+      '@drift-pursuit-grid/vehicle-dynamics':
+        specifier: workspace:*
+        version: link:../vehicle-dynamics
     devDependencies:
       '@drift-pursuit-grid/shared-config':
         specifier: workspace:*
