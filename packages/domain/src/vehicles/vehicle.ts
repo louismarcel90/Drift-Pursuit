@@ -64,3 +64,23 @@ export function createStoppedPlayerVehicle(id: string, position: GridPosition): 
     },
   };
 }
+
+export function createTargetVehicle(id: string, position: GridPosition): TargetVehicle {
+  return {
+    identity: {
+      id,
+      role: "target",
+      displayName: "T1",
+    },
+    aggressionLevel: 0.65,
+    position,
+    dynamics: {
+      speed: 3,
+      headingDegrees: 0,
+      velocity: { x: 3, y: 0 },
+      driftFactor: 0,
+      controlLevel: 1,
+      controlState: "stable",
+    },
+  };
+}

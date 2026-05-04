@@ -26,7 +26,8 @@
     "@drift-pursuit-grid/domain": "workspace:*",
     "@drift-pursuit-grid/state-store": "workspace:*",
     "@drift-pursuit-grid/vehicle-dynamics": "workspace:*",
-      "@drift-pursuit-grid/traffic-engine": "workspace:*"  
+    "@drift-pursuit-grid/traffic-engine": "workspace:*",
+    "@drift-pursuit-grid/pursuit-engine": "workspace:*"
   },
   "devDependencies": {
     "@drift-pursuit-grid/shared-config": "workspace:*",

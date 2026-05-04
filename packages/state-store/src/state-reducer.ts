@@ -1,5 +1,5 @@
 import type { MissionStatus, SimulationEvent } from "@drift-pursuit-grid/contracts";
-import type { PlayerVehicle, PursuitState, TrafficVehicle } from "@drift-pursuit-grid/domain";
+import type { PlayerVehicle, PursuitState, TrafficVehicle, TargetVehicle } from "@drift-pursuit-grid/domain";
 
 import type { AuthoritativeSimulationState } from "./authoritative-state.js";
 import { assertAuthoritativeStateIsValid } from "./state-guards.js";
@@ -28,7 +28,11 @@ export type StateTransition =
   | {
       readonly kind: "set-mission-status";
       readonly missionStatus: MissionStatus;
-    };
+    }
+  | {
+      readonly kind: "replace-target-vehicle";
+      readonly targetVehicle: TargetVehicle;
+    }
 
 export function reduceAuthoritativeState(
   state: AuthoritativeSimulationState,
@@ -84,6 +88,11 @@ function applyTransition(
           ...state.missionProgress,
           status: transition.missionStatus,
         },
+      };
+    case "replace-target-vehicle":
+      return {
+        ...state,
+        targetVehicle: transition.targetVehicle,
       };
   }
 }

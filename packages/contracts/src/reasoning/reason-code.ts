@@ -8,4 +8,4 @@ export type ReasonCode =
   | "degraded-target-indicator"
   | "mission-objective-completed"
   | "mission-timeout"
-  | "player-aborted";
+  | "player-aborted"

@@ -5,6 +5,7 @@ import {
   createGridPosition,
   createInitialPursuitState,
   createStoppedPlayerVehicle,
+  createTargetVehicle,
 } from "@drift-pursuit-grid/domain";
 import {
   createAuthoritativeSimulationState,
@@ -20,6 +21,7 @@ import {
 import { simulationPhaseOrder } from "./simulation-phase.js";
 import type { SimulationPhase } from "./simulation-phase.js";
 import { updateTrafficEngine } from '../../traffic-engine/src/traffic-engine';
+import { updatePursuitState } from '../../pursuit-engine/src/pursuit-engine';
 
 export type SimulationRuntimeConfig = {
   readonly scenarioId: string;
@@ -54,6 +56,11 @@ export function createSimulationRuntime(config: SimulationRuntimeConfig): Simula
     },
   });
 
+  const stateWithTarget = reduceAuthoritativeState(authoritativeState, {
+    kind: "replace-target-vehicle",
+    targetVehicle: createTargetVehicle("target-vehicle", createGridPosition(24, 8)),
+  });
+
   const missionStartedEvent: SimulationEvent = {
     kind: "mission-started",
     tick: 0,
@@ -62,7 +69,7 @@ export function createSimulationRuntime(config: SimulationRuntimeConfig): Simula
     seed: config.seed,
   };
 
-  const stateWithInitialEvent = reduceAuthoritativeState(authoritativeState, {
+  const stateWithInitialEvent = reduceAuthoritativeState(stateWithTarget, {
     kind: "append-events",
     events: [missionStartedEvent],
   });
@@ -89,6 +96,16 @@ export function advanceSimulationTick(
     controlIntent,
   );
 
+  if (state.authoritativeState.targetVehicle === undefined) {
+    throw new Error("Simulation target vehicle is required for pursuit evaluation.");
+  }
+
+  const pursuitResult = updatePursuitState({
+    playerVehicle: updatedPlayerVehicle,
+    targetVehicle: state.authoritativeState.targetVehicle,
+    previousPursuitState: state.authoritativeState.pursuitState,
+  });
+
   const trafficResult = updateTrafficEngine({
     tick: nextTick,
     playerPosition: updatedPlayerVehicle.position,
@@ -105,10 +122,30 @@ export function advanceSimulationTick(
   );
 
   const vehicleEvent: SimulationEvent = {
-    kind: "player-command-accepted",
+    kind: "vehicle-updated",
     tick: nextTick,
     message: `Player speed: ${updatedPlayerVehicle.dynamics.speed.toFixed(2)}, drift: ${updatedPlayerVehicle.dynamics.driftFactor.toFixed(2)}.`,
   };
+
+  const pursuitEvent: SimulationEvent =
+    pursuitResult.pursuitState.lockState === "lost"
+      ? {
+          kind: "pursuit-lock-lost",
+          tick: nextTick,
+          message: "Pursuit lock lost because target distance exceeded limit.",
+          reasonCode: "target-distance-exceeded",
+        }
+      : pursuitResult.pursuitState.interceptWindowOpen
+        ? {
+            kind: "intercept-window-opened",
+            tick: nextTick,
+            message: "Intercept window opened.",
+          }
+        : {
+            kind: "pursuit-lock-acquired",
+            tick: nextTick,
+            message: `Pursuit distance: ${pursuitResult.pursuitState.targetDistance.toFixed(2)}, pressure: ${pursuitResult.pursuitState.pursuitPressure.toFixed(2)}.`,
+          };
 
   const trafficEvent: SimulationEvent = {
     kind: "traffic-updated",
@@ -128,14 +165,19 @@ export function advanceSimulationTick(
     playerVehicle: updatedPlayerVehicle,
   });
 
-  const stateWithUpdatedTraffic = reduceAuthoritativeState(stateWithUpdatedVehicle, {
+  const stateWithUpdatedPursuit = reduceAuthoritativeState(stateWithUpdatedVehicle, {
+    kind: "replace-pursuit-state",
+    pursuitState: pursuitResult.pursuitState,
+  });
+
+  const stateWithUpdatedTraffic = reduceAuthoritativeState(stateWithUpdatedPursuit, {
     kind: "replace-traffic-vehicles",
     trafficVehicles: trafficResult.trafficVehicles,
   });
 
   const stateWithEvents = reduceAuthoritativeState(stateWithUpdatedTraffic, {
     kind: "append-events",
-    events: [...commandEvents, vehicleEvent, trafficEvent],
+    events: [...commandEvents, vehicleEvent, pursuitEvent, trafficEvent],
   });
 
   const nextState: SimulationRuntimeState = {
