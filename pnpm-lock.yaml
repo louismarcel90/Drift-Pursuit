@@ -73,6 +73,19 @@ importers:
         specifier: workspace:*
         version: link:../../packages/shared-config
 
+  packages/collision-engine:
+    dependencies:
+      '@drift-pursuit-grid/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@drift-pursuit-grid/domain':
+        specifier: workspace:*
+        version: link:../domain
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
   packages/contracts:
     devDependencies:
       '@drift-pursuit-grid/shared-config':
@@ -112,6 +125,9 @@ importers:
 
   packages/simulation-core:
     dependencies:
+      '@drift-pursuit-grid/collision-engine':
+        specifier: workspace:*
+        version: link:../collision-engine
       '@drift-pursuit-grid/contracts':
         specifier: workspace:*
         version: link:../contracts

@@ -1,0 +1,33 @@
+{
+  "name": "@drift-pursuit-grid/collision-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run --config vitest.config.ts --passWithNoTests",
+    "test:watch": "vitest --watch",
+    "clean": "rimraf dist coverage"
+  },
+  "dependencies": {
+    "@drift-pursuit-grid/contracts": "workspace:*",
+    "@drift-pursuit-grid/domain": "workspace:*"
+  },
+  "devDependencies": {
+    "@drift-pursuit-grid/shared-config": "workspace:*",
+    "vitest": "^0.34.0",
+    "eslint": "^8.0.0",
+    "rimraf": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}

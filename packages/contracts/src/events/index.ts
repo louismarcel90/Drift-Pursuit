@@ -1,3 +1,5 @@
+import type { CollisionKind, CollisionSeverity } from "../collision/index.js";
+
 export * from "./simulation-event.js";
 
 export type SimulationEvent =
@@ -7,7 +9,8 @@ export type SimulationEvent =
   | VehicleUpdatedEvent
   | PursuitLockLostEvent
   | InterceptWindowOpenedEvent
-  | PursuitLockAcquiredEvent;
+  | PursuitLockAcquiredEvent
+  | CollisionDetectedEvent;
 
 export type MissionStartedEvent = {
   kind: "mission-started";
@@ -52,4 +55,12 @@ export type PursuitLockAcquiredEvent = {
   kind: "pursuit-lock-acquired";
   tick: number;
   message: string;
+};
+
+export type CollisionDetectedEvent = {
+  kind: "collision-detected";
+  tick: number;
+  message: string;
+  collisionKind: CollisionKind;
+  severity: CollisionSeverity;
 };
