@@ -4,6 +4,11 @@ import type {
   SimulationSnapshot,
 } from "@drift-pursuit-grid/contracts";
 
+import {
+  deriveVehicleControlIntent,
+  updatePlayerVehicleDynamics,
+} from "@drift-pursuit-grid/vehicle-dynamics";
+
 import { createDeterministicRng } from "@drift-pursuit-grid/deterministic-rng";
 import type { DeterministicRng } from "@drift-pursuit-grid/deterministic-rng";
 
@@ -86,6 +91,13 @@ export function advanceSimulationTick(
   const nextTick = state.authoritativeState.tick + 1;
   const acceptedCommands = commands.filter((command) => command.tick === nextTick);
 
+  const controlIntent = deriveVehicleControlIntent(acceptedCommands);
+
+const updatedPlayerVehicle = updatePlayerVehicleDynamics(
+  state.authoritativeState.playerVehicle,
+  controlIntent,
+);
+
   const [trafficPressureRoll, nextRng] = state.rng.nextInt(0, 100);
 
   const commandEvents = acceptedCommands.map(
@@ -103,15 +115,19 @@ export function advanceSimulationTick(
   };
 
   const advancedState = reduceAuthoritativeState(state.authoritativeState, {
-    kind: "advance-tick",
-    tick: nextTick,
-  });
+  kind: "advance-tick",
+  tick: nextTick,
+});
 
-  const stateWithEvents = reduceAuthoritativeState(advancedState, {
-    kind: "append-events",
-    events: [...commandEvents, trafficEvent],
-  });
+const stateWithUpdatedVehicle = reduceAuthoritativeState(advancedState, {
+  kind: "replace-player-vehicle",
+  playerVehicle: updatedPlayerVehicle,
+});
 
+const stateWithEvents = reduceAuthoritativeState(stateWithUpdatedVehicle, {
+  kind: "append-events",
+  events: [...commandEvents, trafficEvent],
+});
   const nextState: SimulationRuntimeState = {
     ...state,
     rng: nextRng,

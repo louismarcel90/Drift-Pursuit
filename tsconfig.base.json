@@ -9,7 +9,8 @@
       "@drift-pursuit-grid/domain": ["./packages/domain/src/index.ts"],
       "@drift-pursuit-grid/deterministic-rng": ["./packages/deterministic-rng/src/index.ts"],
       "@drift-pursuit-grid/simulation-core": ["./packages/simulation-core/src/index.ts"],
-      "@drift-pursuit-grid/state-store": ["./packages/state-store/src/index.ts"]
+      "@drift-pursuit-grid/state-store": ["./packages/state-store/src/index.ts"],
+      "@drift-pursuit-grid/vehicle-dynamics": ["./packages/vehicle-dynamics/src/index.ts"]
     },
     "types": ["node", "vitest"],
     "strict": true,
