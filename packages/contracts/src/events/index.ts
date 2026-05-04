@@ -11,7 +11,8 @@ export type SimulationEvent =
   | InterceptWindowOpenedEvent
   | PursuitLockAcquiredEvent
   | CollisionDetectedEvent
-  | TargetUpdatedEvent;
+  | TargetUpdatedEvent
+  | IncidentCreatedEvent;
 
 export type MissionStartedEvent = {
   kind: "mission-started";
@@ -70,4 +71,11 @@ export type TargetUpdatedEvent = {
   kind: "target-updated";
   tick: number;
   message: string;
+};
+
+export type IncidentCreatedEvent = {
+  kind: "incident-created";
+  tick: number;
+  message: string;
+  incidentId: string;
 };

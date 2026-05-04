@@ -145,6 +145,19 @@ importers:
         specifier: workspace:*
         version: link:../shared-config
 
+  packages/incident-engine:
+    dependencies:
+      '@drift-pursuit-grid/deterministic-rng':
+        specifier: workspace:*
+        version: link:../deterministic-rng
+      '@drift-pursuit-grid/domain':
+        specifier: workspace:*
+        version: link:../domain
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
   packages/pursuit-engine:
     dependencies:
       '@drift-pursuit-grid/contracts':
@@ -177,6 +190,9 @@ importers:
       '@drift-pursuit-grid/domain':
         specifier: workspace:*
         version: link:../domain
+      '@drift-pursuit-grid/incident-engine':
+        specifier: workspace:*
+        version: link:../incident-engine
       '@drift-pursuit-grid/pursuit-engine':
         specifier: workspace:*
         version: link:../pursuit-engine

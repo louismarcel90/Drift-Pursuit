@@ -22,6 +22,7 @@ import { simulationPhaseOrder } from "./simulation-phase.js";
 import type { SimulationPhase } from "./simulation-phase.js";
 import { updateTargetAi } from '../../ai-behaviors/src/target-ai-engine';
 import { updateCollisionEngine } from '../../collision-engine/src/collision-engine';
+import { updateIncidentEngine } from '../../incident-engine/src/incident-engine';
 import { updatePursuitState } from '../../pursuit-engine/src/pursuit-engine';
 import { updateTrafficEngine } from '../../traffic-engine/src/traffic-engine';
 
@@ -116,6 +117,13 @@ export function advanceSimulationTick(
     rng: targetAiResult.rng
   });
 
+  const incidentResult = updateIncidentEngine({
+    tick: nextTick,
+    playerPosition: vehicleAfterDynamics.position,
+    incidents: state.authoritativeState.incidents,
+    rng: trafficResult.rng
+  });
+
   const collisionResult = updateCollisionEngine({
     playerVehicle: vehicleAfterDynamics,
     targetVehicle: targetAiResult.targetVehicle,
@@ -147,6 +155,18 @@ export function advanceSimulationTick(
     tick: nextTick,
     message: `Player speed: ${collisionResult.playerVehicle.dynamics.speed.toFixed(2)}, drift: ${collisionResult.playerVehicle.dynamics.driftFactor.toFixed(2)}.`
   };
+
+  const incidentEvents: readonly SimulationEvent[] =
+    incidentResult.createdIncident === undefined
+      ? []
+      : [
+          {
+            kind: "incident-created",
+            tick: nextTick,
+            message: `Incident created: ${incidentResult.createdIncident.kind} severity=${incidentResult.createdIncident.severity}.`,
+            incidentId: incidentResult.createdIncident.id
+          }
+        ];
 
   const collisionEvents: readonly SimulationEvent[] = collisionResult.collided
     ? [
@@ -213,12 +233,18 @@ export function advanceSimulationTick(
     trafficVehicles: trafficResult.trafficVehicles
   });
 
-  const stateWithEvents = reduceAuthoritativeState(stateWithUpdatedTraffic, {
+  const stateWithUpdatedIncidents = reduceAuthoritativeState(stateWithUpdatedTraffic, {
+    kind: "replace-incidents",
+    incidents: incidentResult.incidents
+  });
+
+  const stateWithEvents = reduceAuthoritativeState(stateWithUpdatedIncidents, {
     kind: "append-events",
     events: [
       ...commandEvents,
       targetEvent,
       vehicleEvent,
+      ...incidentEvents,
       ...collisionEvents,
       pursuitEvent,
       trafficEvent
@@ -227,7 +253,7 @@ export function advanceSimulationTick(
 
   const nextState: SimulationRuntimeState = {
     ...state,
-    rng: trafficResult.rng,
+    rng: incidentResult.rng,
     authoritativeState: stateWithEvents,
     acceptedCommands: [...state.acceptedCommands, ...acceptedCommands],
     executedPhases: [...state.executedPhases, ...simulationPhaseOrder]

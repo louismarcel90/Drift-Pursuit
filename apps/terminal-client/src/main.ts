@@ -22,7 +22,7 @@ let runtime = createSimulationRuntime({
   tickDurationMs: 100
 });
 
-for (let index = 0; index < 16; index += 1) {
+for (let index = 0; index < 24; index += 1) {
   const result = advanceSimulationTick(runtime, commands);
   runtime = result.state;
 }
@@ -31,9 +31,13 @@ const playerVehicle = runtime.authoritativeState.playerVehicle;
 const targetVehicle = runtime.authoritativeState.targetVehicle;
 const pursuitState = runtime.authoritativeState.pursuitState;
 const trafficVehicles = runtime.authoritativeState.trafficVehicles;
+const incidents = runtime.authoritativeState.incidents;
 const latestTargetEvent = [...runtime.authoritativeState.events]
   .reverse()
   .find((event) => event.kind === "target-updated");
+const latestIncidentEvent = [...runtime.authoritativeState.events]
+  .reverse()
+  .find((event) => event.kind === "incident-created");
 const latestEvent =
   runtime.authoritativeState.events[runtime.authoritativeState.events.length - 1];
 
@@ -41,6 +45,13 @@ const targetRow =
   targetVehicle === undefined
     ? "Target          : missing"
     : `Target          : (${targetVehicle.position.x.toFixed(2)}, ${targetVehicle.position.y.toFixed(2)}) speed=${targetVehicle.dynamics.speed.toFixed(2)}`;
+
+const incidentRows =
+  incidents.length === 0
+    ? ["Incidents       : none"]
+    : incidents.slice(0, 3).map((incident) => {
+        return `Incident ${incident.id} : ${incident.kind} ${incident.severity} at (${incident.position.x.toFixed(2)}, ${incident.position.y.toFixed(2)})`;
+      });
 
 const banner = [
   "╔══════════════════════════════════════════════════════════════╗",
@@ -52,7 +63,6 @@ const banner = [
   `Seed            : ${runtime.config.seed}`,
   `Current Tick    : ${runtime.authoritativeState.tick}`,
   `Player Speed    : ${playerVehicle.dynamics.speed.toFixed(2)}`,
-  `Player Heading  : ${playerVehicle.dynamics.headingDegrees.toFixed(2)}°`,
   `Player Control  : ${playerVehicle.dynamics.controlState}`,
   `Player Position : (${playerVehicle.position.x.toFixed(2)}, ${playerVehicle.position.y.toFixed(2)})`,
   targetRow,
@@ -60,12 +70,15 @@ const banner = [
   `Target Distance : ${pursuitState.targetDistance.toFixed(2)}`,
   `Pressure        : ${pursuitState.pursuitPressure.toFixed(2)}`,
   `Traffic Count   : ${trafficVehicles.length}`,
+  `Incident Count  : ${incidents.length}`,
+  ...incidentRows,
   `RNG Draws       : ${runtime.rng.state.draws}`,
   `Accepted Inputs : ${runtime.acceptedCommands.length}`,
   `Target AI       : ${latestTargetEvent?.message ?? "No target decision emitted."}`,
+  `Incident Event  : ${latestIncidentEvent?.message ?? "No incident created."}`,
   `Latest Event    : ${latestEvent?.message ?? "No event emitted."}`,
   "",
-  "STEP 11 AI behaviors are running.",
+  "STEP 12 incident engine is running.",
 ].join("\n");
 
 console.log(banner);

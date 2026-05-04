@@ -29,7 +29,8 @@
     "@drift-pursuit-grid/traffic-engine": "workspace:*",
     "@drift-pursuit-grid/pursuit-engine": "workspace:*",
     "@drift-pursuit-grid/collision-engine": "workspace:*",
-    "@drift-pursuit-grid/ai-behaviors": "workspace:*"
+    "@drift-pursuit-grid/ai-behaviors": "workspace:*",
+    "@drift-pursuit-grid/incident-engine": "workspace:*"
   },
   "devDependencies": {
     "@drift-pursuit-grid/shared-config": "workspace:*",
