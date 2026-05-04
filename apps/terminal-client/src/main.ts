@@ -12,15 +12,17 @@ const commands: readonly PlayerCommand[] = [
   { kind: "handbrake", tick: 7, source: "keyboard" },
   { kind: "steer-right", tick: 8, source: "keyboard" },
   { kind: "handbrake", tick: 8, source: "keyboard" },
+  { kind: "accelerate", tick: 9, source: "keyboard" },
+  { kind: "steer-left", tick: 10, source: "keyboard" }
 ];
 
 let runtime = createSimulationRuntime({
   scenarioId: "showcase.perfect-storm",
   seed: 20260502,
-  tickDurationMs: 100,
+  tickDurationMs: 100
 });
 
-for (let index = 0; index < 14; index += 1) {
+for (let index = 0; index < 16; index += 1) {
   const result = advanceSimulationTick(runtime, commands);
   runtime = result.state;
 }
@@ -29,21 +31,16 @@ const playerVehicle = runtime.authoritativeState.playerVehicle;
 const targetVehicle = runtime.authoritativeState.targetVehicle;
 const pursuitState = runtime.authoritativeState.pursuitState;
 const trafficVehicles = runtime.authoritativeState.trafficVehicles;
-const collisionEvents = runtime.authoritativeState.events.filter(
-  (event) => event.kind === "collision-detected",
-);
+const latestTargetEvent = [...runtime.authoritativeState.events]
+  .reverse()
+  .find((event) => event.kind === "target-updated");
 const latestEvent =
   runtime.authoritativeState.events[runtime.authoritativeState.events.length - 1];
 
 const targetRow =
   targetVehicle === undefined
     ? "Target          : missing"
-    : `Target          : (${targetVehicle.position.x.toFixed(2)}, ${targetVehicle.position.y.toFixed(2)})`;
-
-const latestCollisionRow =
-  collisionEvents.length === 0
-    ? "Latest Collision: none"
-    : `Latest Collision: ${collisionEvents[collisionEvents.length - 1]?.message ?? "none"}`;
+    : `Target          : (${targetVehicle.position.x.toFixed(2)}, ${targetVehicle.position.y.toFixed(2)}) speed=${targetVehicle.dynamics.speed.toFixed(2)}`;
 
 const banner = [
   "╔══════════════════════════════════════════════════════════════╗",
@@ -54,23 +51,21 @@ const banner = [
   `Scenario        : ${runtime.config.scenarioId}`,
   `Seed            : ${runtime.config.seed}`,
   `Current Tick    : ${runtime.authoritativeState.tick}`,
-  `Speed           : ${playerVehicle.dynamics.speed.toFixed(2)}`,
-  `Heading         : ${playerVehicle.dynamics.headingDegrees.toFixed(2)}°`,
-  `Control Level   : ${playerVehicle.dynamics.controlLevel.toFixed(2)}`,
-  `Control State   : ${playerVehicle.dynamics.controlState}`,
-  `Position        : (${playerVehicle.position.x.toFixed(2)}, ${playerVehicle.position.y.toFixed(2)})`,
+  `Player Speed    : ${playerVehicle.dynamics.speed.toFixed(2)}`,
+  `Player Heading  : ${playerVehicle.dynamics.headingDegrees.toFixed(2)}°`,
+  `Player Control  : ${playerVehicle.dynamics.controlState}`,
+  `Player Position : (${playerVehicle.position.x.toFixed(2)}, ${playerVehicle.position.y.toFixed(2)})`,
   targetRow,
   `Pursuit Lock    : ${pursuitState.lockState}`,
   `Target Distance : ${pursuitState.targetDistance.toFixed(2)}`,
   `Pressure        : ${pursuitState.pursuitPressure.toFixed(2)}`,
   `Traffic Count   : ${trafficVehicles.length}`,
-  `Collision Count : ${collisionEvents.length}`,
-  latestCollisionRow,
   `RNG Draws       : ${runtime.rng.state.draws}`,
   `Accepted Inputs : ${runtime.acceptedCommands.length}`,
+  `Target AI       : ${latestTargetEvent?.message ?? "No target decision emitted."}`,
   `Latest Event    : ${latestEvent?.message ?? "No event emitted."}`,
   "",
-  "STEP 10 collision engine is running.",
+  "STEP 11 AI behaviors are running.",
 ].join("\n");
 
 console.log(banner);

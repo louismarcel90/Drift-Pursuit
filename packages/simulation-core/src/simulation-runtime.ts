@@ -5,24 +5,25 @@ import {
   createGridPosition,
   createInitialPursuitState,
   createStoppedPlayerVehicle,
-  createTargetVehicle,
+  createTargetVehicle
 } from "@drift-pursuit-grid/domain";
 import {
   createAuthoritativeSimulationState,
   projectSimulationSnapshot,
-  reduceAuthoritativeState,
+  reduceAuthoritativeState
 } from "@drift-pursuit-grid/state-store";
 import type { AuthoritativeSimulationState } from "@drift-pursuit-grid/state-store";
 import {
   deriveVehicleControlIntent,
-  updatePlayerVehicleDynamics,
+  updatePlayerVehicleDynamics
 } from "@drift-pursuit-grid/vehicle-dynamics";
 
 import { simulationPhaseOrder } from "./simulation-phase.js";
 import type { SimulationPhase } from "./simulation-phase.js";
+import { updateTargetAi } from '../../ai-behaviors/src/target-ai-engine';
 import { updateCollisionEngine } from '../../collision-engine/src/collision-engine';
-import { updateTrafficEngine } from '../../traffic-engine/src/traffic-engine';
 import { updatePursuitState } from '../../pursuit-engine/src/pursuit-engine';
+import { updateTrafficEngine } from '../../traffic-engine/src/traffic-engine';
 
 export type SimulationRuntimeConfig = {
   readonly scenarioId: string;
@@ -53,13 +54,13 @@ export function createSimulationRuntime(config: SimulationRuntimeConfig): Simula
     missionProgress: {
       missionId: config.scenarioId,
       status: "in-progress",
-      completedObjectiveIds: [],
-    },
+      completedObjectiveIds: []
+    }
   });
 
   const stateWithTarget = reduceAuthoritativeState(authoritativeState, {
     kind: "replace-target-vehicle",
-    targetVehicle: createTargetVehicle("target-vehicle", createGridPosition(24, 8)),
+    targetVehicle: createTargetVehicle("target-vehicle", createGridPosition(24, 8))
   });
 
   const missionStartedEvent: SimulationEvent = {
@@ -67,12 +68,12 @@ export function createSimulationRuntime(config: SimulationRuntimeConfig): Simula
     tick: 0,
     message: "Mission runtime initialized.",
     scenarioId: config.scenarioId,
-    seed: config.seed,
+    seed: config.seed
   };
 
   const stateWithInitialEvent = reduceAuthoritativeState(stateWithTarget, {
     kind: "append-events",
-    events: [missionStartedEvent],
+    events: [missionStartedEvent]
   });
 
   return {
@@ -80,13 +81,13 @@ export function createSimulationRuntime(config: SimulationRuntimeConfig): Simula
     rng: createDeterministicRng(config.seed),
     authoritativeState: stateWithInitialEvent,
     acceptedCommands: [],
-    executedPhases: [],
+    executedPhases: []
   };
 }
 
 export function advanceSimulationTick(
   state: SimulationRuntimeState,
-  commands: readonly PlayerCommand[],
+  commands: readonly PlayerCommand[]
 ): SimulationTickResult {
   const nextTick = state.authoritativeState.tick + 1;
   const acceptedCommands = commands.filter((command) => command.tick === nextTick);
@@ -94,46 +95,57 @@ export function advanceSimulationTick(
 
   const vehicleAfterDynamics = updatePlayerVehicleDynamics(
     state.authoritativeState.playerVehicle,
-    controlIntent,
+    controlIntent
   );
+
+  if (state.authoritativeState.targetVehicle === undefined) {
+    throw new Error("Simulation target vehicle is required for AI and pursuit evaluation.");
+  }
+
+  const targetAiResult = updateTargetAi({
+    targetVehicle: state.authoritativeState.targetVehicle,
+    pursuitState: state.authoritativeState.pursuitState,
+    trafficVehicles: state.authoritativeState.trafficVehicles,
+    rng: state.rng
+  });
 
   const trafficResult = updateTrafficEngine({
     tick: nextTick,
     playerPosition: vehicleAfterDynamics.position,
     trafficVehicles: state.authoritativeState.trafficVehicles,
-    rng: state.rng,
+    rng: targetAiResult.rng
   });
 
   const collisionResult = updateCollisionEngine({
-  playerVehicle: vehicleAfterDynamics,
-  ...(state.authoritativeState.targetVehicle !== undefined && {
-    targetVehicle: state.authoritativeState.targetVehicle,
-  }),
-  trafficVehicles: trafficResult.trafficVehicles,
-});
-
-  if (state.authoritativeState.targetVehicle === undefined) {
-    throw new Error("Simulation target vehicle is required for pursuit evaluation.");
-  }
+    playerVehicle: vehicleAfterDynamics,
+    targetVehicle: targetAiResult.targetVehicle,
+    trafficVehicles: trafficResult.trafficVehicles
+  });
 
   const pursuitResult = updatePursuitState({
     playerVehicle: collisionResult.playerVehicle,
-    targetVehicle: state.authoritativeState.targetVehicle,
-    previousPursuitState: state.authoritativeState.pursuitState,
+    targetVehicle: targetAiResult.targetVehicle,
+    previousPursuitState: state.authoritativeState.pursuitState
   });
 
   const commandEvents = acceptedCommands.map(
     (command): SimulationEvent => ({
       kind: "player-command-accepted",
       tick: nextTick,
-      message: `Accepted command: ${command.kind}.`,
-    }),
+      message: `Accepted command: ${command.kind}.`
+    })
   );
+
+  const targetEvent: SimulationEvent = {
+    kind: "target-updated",
+    tick: nextTick,
+    message: `Target decision: ${targetAiResult.decision.kind}. ${targetAiResult.decision.reason}`
+  };
 
   const vehicleEvent: SimulationEvent = {
     kind: "vehicle-updated",
     tick: nextTick,
-    message: `Player speed: ${collisionResult.playerVehicle.dynamics.speed.toFixed(2)}, drift: ${collisionResult.playerVehicle.dynamics.driftFactor.toFixed(2)}.`,
+    message: `Player speed: ${collisionResult.playerVehicle.dynamics.speed.toFixed(2)}, drift: ${collisionResult.playerVehicle.dynamics.driftFactor.toFixed(2)}.`
   };
 
   const collisionEvents: readonly SimulationEvent[] = collisionResult.collided
@@ -143,8 +155,8 @@ export function advanceSimulationTick(
           tick: nextTick,
           message: `Collision detected with ${collisionResult.collidedActorId ?? "unknown actor"}. Severity: ${collisionResult.collisionResult.severity}.`,
           collisionKind: collisionResult.collisionResult.kind,
-          severity: collisionResult.collisionResult.severity,
-        },
+          severity: collisionResult.collisionResult.severity
+        }
       ]
     : [];
 
@@ -154,18 +166,18 @@ export function advanceSimulationTick(
           kind: "pursuit-lock-lost",
           tick: nextTick,
           message: "Pursuit lock lost because target distance exceeded limit.",
-          reasonCode: "target-distance-exceeded",
+          reasonCode: "target-distance-exceeded"
         }
       : pursuitResult.pursuitState.interceptWindowOpen
         ? {
             kind: "intercept-window-opened",
             tick: nextTick,
-            message: "Intercept window opened.",
+            message: "Intercept window opened."
           }
         : {
             kind: "pursuit-lock-acquired",
             tick: nextTick,
-            message: `Pursuit distance: ${pursuitResult.pursuitState.targetDistance.toFixed(2)}, pressure: ${pursuitResult.pursuitState.pursuitPressure.toFixed(2)}.`,
+            message: `Pursuit distance: ${pursuitResult.pursuitState.targetDistance.toFixed(2)}, pressure: ${pursuitResult.pursuitState.pursuitPressure.toFixed(2)}.`
           };
 
   const trafficEvent: SimulationEvent = {
@@ -173,32 +185,44 @@ export function advanceSimulationTick(
     tick: nextTick,
     message: trafficResult.spawnedVehicle
       ? `Traffic updated with ${trafficResult.trafficVehicles.length} vehicles. New vehicle spawned.`
-      : `Traffic updated with ${trafficResult.trafficVehicles.length} vehicles.`,
+      : `Traffic updated with ${trafficResult.trafficVehicles.length} vehicles.`
   };
 
   const advancedState = reduceAuthoritativeState(state.authoritativeState, {
     kind: "advance-tick",
-    tick: nextTick,
+    tick: nextTick
   });
 
-  const stateWithUpdatedVehicle = reduceAuthoritativeState(advancedState, {
+  const stateWithUpdatedTarget = reduceAuthoritativeState(advancedState, {
+    kind: "replace-target-vehicle",
+    targetVehicle: targetAiResult.targetVehicle
+  });
+
+  const stateWithUpdatedVehicle = reduceAuthoritativeState(stateWithUpdatedTarget, {
     kind: "replace-player-vehicle",
-    playerVehicle: collisionResult.playerVehicle,
+    playerVehicle: collisionResult.playerVehicle
   });
 
   const stateWithUpdatedPursuit = reduceAuthoritativeState(stateWithUpdatedVehicle, {
     kind: "replace-pursuit-state",
-    pursuitState: pursuitResult.pursuitState,
+    pursuitState: pursuitResult.pursuitState
   });
 
   const stateWithUpdatedTraffic = reduceAuthoritativeState(stateWithUpdatedPursuit, {
     kind: "replace-traffic-vehicles",
-    trafficVehicles: trafficResult.trafficVehicles,
+    trafficVehicles: trafficResult.trafficVehicles
   });
 
   const stateWithEvents = reduceAuthoritativeState(stateWithUpdatedTraffic, {
     kind: "append-events",
-    events: [...commandEvents, vehicleEvent, ...collisionEvents, pursuitEvent, trafficEvent],
+    events: [
+      ...commandEvents,
+      targetEvent,
+      vehicleEvent,
+      ...collisionEvents,
+      pursuitEvent,
+      trafficEvent
+    ]
   });
 
   const nextState: SimulationRuntimeState = {
@@ -206,11 +230,11 @@ export function advanceSimulationTick(
     rng: trafficResult.rng,
     authoritativeState: stateWithEvents,
     acceptedCommands: [...state.acceptedCommands, ...acceptedCommands],
-    executedPhases: [...state.executedPhases, ...simulationPhaseOrder],
+    executedPhases: [...state.executedPhases, ...simulationPhaseOrder]
   };
 
   return {
     state: nextState,
-    snapshot: projectSimulationSnapshot(nextState.authoritativeState),
+    snapshot: projectSimulationSnapshot(nextState.authoritativeState)
   };
 }

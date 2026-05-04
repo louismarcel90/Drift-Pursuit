@@ -10,7 +10,8 @@ export type SimulationEvent =
   | PursuitLockLostEvent
   | InterceptWindowOpenedEvent
   | PursuitLockAcquiredEvent
-  | CollisionDetectedEvent;
+  | CollisionDetectedEvent
+  | TargetUpdatedEvent;
 
 export type MissionStartedEvent = {
   kind: "mission-started";
@@ -63,4 +64,10 @@ export type CollisionDetectedEvent = {
   message: string;
   collisionKind: CollisionKind;
   severity: CollisionSeverity;
+};
+
+export type TargetUpdatedEvent = {
+  kind: "target-updated";
+  tick: number;
+  message: string;
 };
