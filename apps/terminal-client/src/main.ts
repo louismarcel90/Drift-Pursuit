@@ -1,24 +1,14 @@
-import type { PlayerCommand } from "@drift-pursuit-grid/contracts";
+import {
+  createCommandsFromScriptedInput,
+  showcaseScriptedInput
+} from "../../../packages/input-system/src/index.js";
 import {
   projectAsciiRenderModel,
   renderAsciiFrame
-} from "@drift-pursuit-grid/renderer-ascii";
+} from "../../../packages/renderer-ascii/src/index.js";
 import { advanceSimulationTick, createSimulationRuntime } from "@drift-pursuit-grid/simulation-core";
 
-const commands: readonly PlayerCommand[] = [
-  { kind: "accelerate", tick: 1, source: "keyboard" },
-  { kind: "accelerate", tick: 2, source: "keyboard" },
-  { kind: "accelerate", tick: 3, source: "keyboard" },
-  { kind: "accelerate", tick: 4, source: "keyboard" },
-  { kind: "accelerate", tick: 5, source: "keyboard" },
-  { kind: "accelerate", tick: 6, source: "keyboard" },
-  { kind: "steer-right", tick: 7, source: "keyboard" },
-  { kind: "handbrake", tick: 7, source: "keyboard" },
-  { kind: "steer-right", tick: 8, source: "keyboard" },
-  { kind: "handbrake", tick: 8, source: "keyboard" },
-  { kind: "accelerate", tick: 9, source: "keyboard" },
-  { kind: "steer-left", tick: 10, source: "keyboard" }
-];
+const commands = createCommandsFromScriptedInput(showcaseScriptedInput);
 
 let runtime = createSimulationRuntime({
   scenarioId: "showcase.perfect-storm",

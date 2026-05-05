@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx src/main.ts",
+    "dev:realtime": "tsx src/realtime-main.ts",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint --config ../../eslint.config.mjs .",
@@ -16,14 +17,13 @@
     "@drift-pursuit-grid/contracts": "workspace:*",
     "@drift-pursuit-grid/domain": "workspace:*",
     "@drift-pursuit-grid/simulation-core": "workspace:*",
-    "@drift-pursuit-grid/renderer-ascii": "workspace:*"
+    "@drift-pursuit-grid/renderer-ascii": "workspace:*",
+    "@drift-pursuit-grid/input-system": "workspace:*"
 
   },
   
   "devDependencies": {
     "@drift-pursuit-grid/shared-config": "workspace:*",
     "@drift-pursuit-grid/simulation-core": "workspace:*"
-
-    
   }
 }

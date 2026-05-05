@@ -65,6 +65,9 @@ importers:
       '@drift-pursuit-grid/domain':
         specifier: workspace:*
         version: link:../../packages/domain
+      '@drift-pursuit-grid/input-system':
+        specifier: workspace:*
+        version: link:../../packages/input-system
       '@drift-pursuit-grid/renderer-ascii':
         specifier: workspace:*
         version: link:../../packages/renderer-ascii
@@ -150,6 +153,16 @@ importers:
       '@drift-pursuit-grid/domain':
         specifier: workspace:*
         version: link:../domain
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
+  packages/input-system:
+    dependencies:
+      '@drift-pursuit-grid/contracts':
+        specifier: workspace:*
+        version: link:../contracts
     devDependencies:
       '@drift-pursuit-grid/shared-config':
         specifier: workspace:*
