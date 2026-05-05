@@ -1,5 +1,5 @@
 {
-  "name": "@drift-pursuit-grid/state-store",
+  "name": "@drift-pursuit-grid/replay-engine",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -7,23 +7,23 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./src/index.ts",
-      "import": "./src/index.ts",
-      "default": "./src/index.ts"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint --config ../../eslint.config.mjs .",
-    "test": "vitest run --config ./vitest.config.ts --passWithNoTests",
+    "lint": "eslint .",
+    "test": "vitest run --config vitest.config.ts",
     "test:watch": "vitest --watch",
     "clean": "rimraf dist coverage"
   },
   "dependencies": {
     "@drift-pursuit-grid/contracts": "workspace:*",
-    "@drift-pursuit-grid/deterministic-rng": "workspace:*",
-    "@drift-pursuit-grid/domain": "workspace:*"
+    "@drift-pursuit-grid/simulation-core": "workspace:*",
+    "@drift-pursuit-grid/state-store": "workspace:*",
+    "@drift-pursuit-grid/input-system": "workspace:*"
   },
   "devDependencies": {
     "@drift-pursuit-grid/shared-config": "workspace:*"

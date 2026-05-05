@@ -6,25 +6,39 @@ import {
   projectAsciiRenderModel,
   renderAsciiFrame
 } from "../../../packages/renderer-ascii/src/index.js";
-import { advanceSimulationTick, createSimulationRuntime } from "@drift-pursuit-grid/simulation-core";
+import {
+  replayFromRecord,
+  runSimulationForReplayRecord,
+  verifyReplayRecord
+} from "../../../packages/replay-engine/src/index.js";
 
-const commands = createCommandsFromScriptedInput(showcaseScriptedInput);
+const inputLog = createCommandsFromScriptedInput(showcaseScriptedInput);
 
-let runtime = createSimulationRuntime({
+const initialRun = runSimulationForReplayRecord({
   scenarioId: "showcase.perfect-storm",
   seed: 20260502,
-  tickDurationMs: 100
+  tickDurationMs: 100,
+  totalTicks: 24,
+  inputLog
 });
 
-for (let index = 0; index < 24; index += 1) {
-  const result = advanceSimulationTick(runtime, commands);
-  runtime = result.state;
-}
+const replayRun = replayFromRecord(initialRun.replayRecord);
+const verification = verifyReplayRecord(initialRun.replayRecord);
 
-const renderModel = projectAsciiRenderModel(runtime.authoritativeState, {
+const renderModel = projectAsciiRenderModel(replayRun.finalState, {
   width: 72,
   height: 20,
   eventFeedLimit: 8
 });
 
+const replaySummary = [
+  "",
+  "REPLAY VERIFICATION",
+  `Status            : ${verification.status}`,
+  `Expected Checksum : ${initialRun.replayRecord.expectedFinalChecksum}`,
+  `Actual Checksum   : ${replayRun.actualFinalChecksum}`,
+  `Verified          : ${replayRun.verified ? "yes" : "no"}`
+].join("\n");
+
 console.log(renderAsciiFrame(renderModel));
+console.log(replaySummary);
