@@ -98,6 +98,7 @@ export type DegradedModeActivatedEvent = {
   kind: "degraded-mode-activated";
   tick: number;
   message: string;
+  faultCode: string;
 };
 
 export type DegradedModeRecoveredEvent = {

@@ -1,0 +1,30 @@
+{
+  "name": "@drift-pursuit-grid/degraded-mode-engine",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint --config ../../eslint.config.mjs .",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest --watch --config vitest.config.ts",
+    "clean": "rimraf dist coverage"
+  },
+  "dependencies": {
+    "@drift-pursuit-grid/contracts": "workspace:*",
+    "@drift-pursuit-grid/deterministic-rng": "workspace:*"
+  },
+  "devDependencies": {
+    "@drift-pursuit-grid/shared-config": "workspace:*"
+  }
+}

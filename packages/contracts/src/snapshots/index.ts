@@ -1,3 +1,4 @@
+import type { DegradedMode } from "../degraded/index.js";
 export * from "./simulation-snapshot.js";
 
 export type PlayerVehicle = {
@@ -19,5 +20,5 @@ export type SimulationSnapshot = {
   healthStatus: string;
 
   playerVehicle: PlayerVehicle;
-  degradedModes: string[];
+  degradedModes: readonly DegradedMode[];
 };

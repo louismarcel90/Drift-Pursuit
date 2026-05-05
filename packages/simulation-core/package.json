@@ -30,7 +30,8 @@
     "@drift-pursuit-grid/pursuit-engine": "workspace:*",
     "@drift-pursuit-grid/collision-engine": "workspace:*",
     "@drift-pursuit-grid/ai-behaviors": "workspace:*",
-    "@drift-pursuit-grid/incident-engine": "workspace:*"
+    "@drift-pursuit-grid/incident-engine": "workspace:*",
+    "@drift-pursuit-grid/degraded-mode-engine": "workspace:*"
   },
   "devDependencies": {
     "@drift-pursuit-grid/shared-config": "workspace:*",

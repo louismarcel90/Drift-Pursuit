@@ -98,6 +98,14 @@ function createHudLines(state: AuthoritativeSimulationState): readonly HudLine[]
     {
       label: "Incidents",
       value: state.incidents.length.toString()
+    },
+        {
+      label: "Health",
+      value: state.degradedModes.length > 0 ? "degraded" : "nominal"
+    },
+    {
+      label: "Degraded",
+      value: state.degradedModes.length.toString()
     }
   ];
 }

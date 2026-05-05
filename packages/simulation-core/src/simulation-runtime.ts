@@ -25,6 +25,7 @@ import { updateCollisionEngine } from '../../collision-engine/src/collision-engi
 import { updateIncidentEngine } from '../../incident-engine/src/incident-engine';
 import { updatePursuitState } from '../../pursuit-engine/src/pursuit-engine';
 import { updateTrafficEngine } from '../../traffic-engine/src/traffic-engine';
+import { updateDegradedModeEngine } from "../../degraded-mode-engine/src/degraded-mode-engine";
 
 export type SimulationRuntimeConfig = {
   readonly scenarioId: string;
@@ -124,6 +125,12 @@ export function advanceSimulationTick(
     rng: trafficResult.rng
   });
 
+    const degradedModeResult = updateDegradedModeEngine({
+    tick: nextTick,
+    degradedModes: state.authoritativeState.degradedModes,
+    rng: incidentResult.rng,
+  });
+
   const collisionResult = updateCollisionEngine({
     playerVehicle: vehicleAfterDynamics,
     targetVehicle: targetAiResult.targetVehicle,
@@ -143,6 +150,26 @@ export function advanceSimulationTick(
       message: `Accepted command: ${command.kind}.`
     })
   );
+
+    const degradedModeEvents: readonly SimulationEvent[] = [
+    ...(degradedModeResult.activatedMode === undefined
+      ? []
+      : [
+          {
+            kind: "degraded-mode-activated" as const,
+            tick: nextTick,
+            message: `Degraded mode activated: ${degradedModeResult.activatedMode.kind}. Fault: ${degradedModeResult.activatedMode.faultCode}.`,
+            faultCode: degradedModeResult.activatedMode.faultCode
+          }
+        ]),
+    ...degradedModeResult.recoveredModes.map(
+      (mode): SimulationEvent => ({
+        kind: "degraded-mode-recovered",
+        tick: nextTick,
+        message: `Degraded mode recovered: ${mode.kind}.`
+      })
+    )
+  ];
 
   const targetEvent: SimulationEvent = {
     kind: "target-updated",
@@ -238,7 +265,12 @@ export function advanceSimulationTick(
     incidents: incidentResult.incidents
   });
 
-  const stateWithEvents = reduceAuthoritativeState(stateWithUpdatedIncidents, {
+    const stateWithUpdatedDegradedModes = reduceAuthoritativeState(stateWithUpdatedIncidents, {
+    kind: "replace-degraded-modes",
+    degradedModes: degradedModeResult.degradedModes
+  });
+
+  const stateWithEvents = reduceAuthoritativeState(stateWithUpdatedDegradedModes, {
     kind: "append-events",
     events: [
       ...commandEvents,
@@ -246,6 +278,7 @@ export function advanceSimulationTick(
       vehicleEvent,
       ...incidentEvents,
       ...collisionEvents,
+      ...degradedModeEvents,
       pursuitEvent,
       trafficEvent
     ]

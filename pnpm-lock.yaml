@@ -151,6 +151,19 @@ importers:
         specifier: workspace:*
         version: link:../shared-config
 
+  packages/degraded-mode-engine:
+    dependencies:
+      '@drift-pursuit-grid/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@drift-pursuit-grid/deterministic-rng':
+        specifier: workspace:*
+        version: link:../deterministic-rng
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
   packages/deterministic-rng:
     devDependencies:
       '@drift-pursuit-grid/shared-config':
@@ -251,6 +264,9 @@ importers:
       '@drift-pursuit-grid/contracts':
         specifier: workspace:*
         version: link:../contracts
+      '@drift-pursuit-grid/degraded-mode-engine':
+        specifier: workspace:*
+        version: link:../degraded-mode-engine
       '@drift-pursuit-grid/deterministic-rng':
         specifier: workspace:*
         version: link:../deterministic-rng
