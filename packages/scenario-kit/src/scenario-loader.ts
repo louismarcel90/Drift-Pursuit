@@ -20,11 +20,11 @@ export function loadScenarioDefinition(definition: ScenarioDefinition): Scenario
   return {
     scenario: {
       definition,
-      loadedAtTick: 0
+      loadedAtTick: 0,
     },
     inputLog: createCommandsFromScriptedInput({
-      steps: definition.scriptedInput
-    })
+      steps: definition.scriptedInput,
+    }),
   };
 }
 

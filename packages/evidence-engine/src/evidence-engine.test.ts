@@ -1,7 +1,11 @@
 import { describe, expect, it } from "vitest";
 
 import { createDebriefSummary } from "@drift-pursuit-grid/debrief-engine";
-import { replayFromRecord, runSimulationForReplayRecord, verifyReplayRecord } from "@drift-pursuit-grid/replay-engine";
+import {
+  replayFromRecord,
+  runSimulationForReplayRecord,
+  verifyReplayRecord,
+} from "@drift-pursuit-grid/replay-engine";
 import { loadBuiltInScenario } from "@drift-pursuit-grid/scenario-kit";
 
 import { createDigest } from "./evidence-digest.js";
@@ -12,13 +16,13 @@ describe("Evidence engine", () => {
     const firstDigest = createDigest({
       scenarioId: "test",
       seed: 2026,
-      values: [1, 2, 3]
+      values: [1, 2, 3],
     });
 
     const secondDigest = createDigest({
       values: [1, 2, 3],
       seed: 2026,
-      scenarioId: "test"
+      scenarioId: "test",
     });
 
     expect(firstDigest).toBe(secondDigest);
@@ -33,7 +37,7 @@ describe("Evidence engine", () => {
       seed: scenario.seed,
       tickDurationMs: scenario.tickDurationMs,
       totalTicks: scenario.totalTicks,
-      inputLog: loadedScenario.inputLog
+      inputLog: loadedScenario.inputLog,
     });
 
     const replayRun = replayFromRecord(initialRun.replayRecord);
@@ -45,7 +49,7 @@ describe("Evidence engine", () => {
       replayRecord: initialRun.replayRecord,
       replayVerification,
       finalState: replayRun.finalState,
-      debrief
+      debrief,
     });
 
     expect(pack.evidenceVersion).toBe("1.0");
@@ -63,7 +67,7 @@ describe("Evidence engine", () => {
       seed: scenario.seed,
       tickDurationMs: scenario.tickDurationMs,
       totalTicks: scenario.totalTicks,
-      inputLog: loadedScenario.inputLog
+      inputLog: loadedScenario.inputLog,
     });
 
     const replayRun = replayFromRecord(initialRun.replayRecord);
@@ -75,7 +79,7 @@ describe("Evidence engine", () => {
       replayRecord: initialRun.replayRecord,
       replayVerification,
       finalState: replayRun.finalState,
-      debrief
+      debrief,
     });
 
     const rendered = renderEvidencePackSummary(pack);

@@ -1,11 +1,15 @@
-import type { PlayerCommand, PlayerCommandKind, PlayerCommandSource } from "@drift-pursuit-grid/contracts";
+import type {
+  PlayerCommand,
+  PlayerCommandKind,
+  PlayerCommandSource,
+} from "@drift-pursuit-grid/contracts";
 
 export type CommandBuffer = {
   readonly commands: readonly PlayerCommand[];
 };
 
 export const emptyCommandBuffer: CommandBuffer = {
-  commands: []
+  commands: [],
 };
 
 export function appendCommandToBuffer(params: {
@@ -20,9 +24,9 @@ export function appendCommandToBuffer(params: {
       {
         kind: params.kind,
         tick: params.tick,
-        source: params.source
-      }
-    ]
+        source: params.source,
+      },
+    ],
   };
 }
 
@@ -31,7 +35,7 @@ export function appendCommandsToBuffer(params: {
   readonly commands: readonly PlayerCommand[];
 }): CommandBuffer {
   return {
-    commands: [...params.buffer.commands, ...params.commands]
+    commands: [...params.buffer.commands, ...params.commands],
   };
 }
 
@@ -47,6 +51,6 @@ export function removeCommandsBeforeTick(params: {
   readonly tick: number;
 }): CommandBuffer {
   return {
-    commands: params.buffer.commands.filter((command) => command.tick >= params.tick)
+    commands: params.buffer.commands.filter((command) => command.tick >= params.tick),
   };
 }

@@ -13,5 +13,5 @@ export const defaultTargetAiConfig: TargetAiConfig = {
   pressureSpeedBoost: 2,
   lateralMoveChance: 0.35,
   maxLateralOffsetPerTick: 1,
-  headingChangeDegrees: 10
+  headingChangeDegrees: 10,
 };

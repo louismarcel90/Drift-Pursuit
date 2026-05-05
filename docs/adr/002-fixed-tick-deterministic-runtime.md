@@ -53,3 +53,4 @@ The simulation runtime will use a **fixed logical tick model**.
 
 ```text
 100ms per tick
+```

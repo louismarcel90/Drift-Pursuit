@@ -33,7 +33,7 @@ function recoverExpiredModes(params: {
     if (mode.recoveredAtTick !== undefined && params.tick >= mode.recoveredAtTick) {
       recoveredModes.push({
         ...mode,
-        status: "recovered"
+        status: "recovered",
       });
       continue;
     }
@@ -43,39 +43,37 @@ function recoverExpiredModes(params: {
 
   return {
     activeModes,
-    recoveredModes
+    recoveredModes,
   };
 }
 
-export function updateDegradedModeEngine(
-  input: DegradedModeEngineInput
-): DegradedModeEngineResult {
+export function updateDegradedModeEngine(input: DegradedModeEngineInput): DegradedModeEngineResult {
   const config = input.config ?? defaultDegradedModeEngineConfig;
 
   const recoveryResult = recoverExpiredModes({
     tick: input.tick,
-    degradedModes: input.degradedModes
+    degradedModes: input.degradedModes,
   });
 
   const faultResult = injectFaultIfRequired({
     tick: input.tick,
     degradedModes: recoveryResult.activeModes,
     rng: input.rng,
-    config
+    config,
   });
 
   const result: DegradedModeEngineResult = {
-  degradedModes: faultResult.degradedModes,
-  rng: faultResult.rng,
-  recoveredModes: recoveryResult.recoveredModes,
-};
-
-if (faultResult.activatedMode !== undefined) {
-  return {
-    ...result,
-    activatedMode: faultResult.activatedMode,
+    degradedModes: faultResult.degradedModes,
+    rng: faultResult.rng,
+    recoveredModes: recoveryResult.recoveredModes,
   };
-}
 
-return result;
+  if (faultResult.activatedMode !== undefined) {
+    return {
+      ...result,
+      activatedMode: faultResult.activatedMode,
+    };
+  }
+
+  return result;
 }

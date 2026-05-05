@@ -19,19 +19,14 @@ export type ScenarioValidationResult = {
   readonly issues: readonly ScenarioValidationIssue[];
 };
 
-function createIssue(
-  code: ScenarioValidationIssueCode,
-  message: string
-): ScenarioValidationIssue {
+function createIssue(code: ScenarioValidationIssueCode, message: string): ScenarioValidationIssue {
   return {
     code,
-    message
+    message,
   };
 }
 
-export function validateScenarioDefinition(
-  scenario: ScenarioDefinition
-): ScenarioValidationResult {
+export function validateScenarioDefinition(scenario: ScenarioDefinition): ScenarioValidationResult {
   const issues: ScenarioValidationIssue[] = [];
 
   if (scenario.id.trim().length === 0) {
@@ -48,41 +43,36 @@ export function validateScenarioDefinition(
 
   if (!Number.isInteger(scenario.totalTicks) || scenario.totalTicks <= 0) {
     issues.push(
-      createIssue("invalid-total-ticks", "Scenario totalTicks must be a positive integer.")
+      createIssue("invalid-total-ticks", "Scenario totalTicks must be a positive integer."),
     );
   }
 
   if (!Number.isInteger(scenario.tickDurationMs) || scenario.tickDurationMs <= 0) {
     issues.push(
-      createIssue(
-        "invalid-tick-duration",
-        "Scenario tickDurationMs must be a positive integer."
-      )
+      createIssue("invalid-tick-duration", "Scenario tickDurationMs must be a positive integer."),
     );
   }
 
   if (scenario.scriptedInput.length === 0) {
-    issues.push(
-      createIssue("empty-scripted-input", "Scenario scripted input must not be empty.")
-    );
+    issues.push(createIssue("empty-scripted-input", "Scenario scripted input must not be empty."));
   }
 
   const outOfRangeStep = scenario.scriptedInput.find(
-    (step) => step.tick < 1 || step.tick > scenario.totalTicks
+    (step) => step.tick < 1 || step.tick > scenario.totalTicks,
   );
 
   if (outOfRangeStep !== undefined) {
     issues.push(
       createIssue(
         "scripted-input-out-of-range",
-        `Scripted input tick ${outOfRangeStep.tick} is outside scenario range.`
-      )
+        `Scripted input tick ${outOfRangeStep.tick} is outside scenario range.`,
+      ),
     );
   }
 
   return {
     valid: issues.length === 0,
-    issues
+    issues,
   };
 }
 
@@ -90,9 +80,7 @@ export function assertScenarioDefinitionIsValid(scenario: ScenarioDefinition): v
   const result = validateScenarioDefinition(scenario);
 
   if (!result.valid) {
-    const details = result.issues
-      .map((issue) => `${issue.code}: ${issue.message}`)
-      .join("; ");
+    const details = result.issues.map((issue) => `${issue.code}: ${issue.message}`).join("; ");
 
     throw new Error(`Invalid scenario definition: ${details}`);
   }

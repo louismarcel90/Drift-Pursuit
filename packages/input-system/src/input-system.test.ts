@@ -2,10 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { appendCommandToBuffer, emptyCommandBuffer, getCommandsForTick } from "./command-buffer.js";
 import { mapKeyToCommandKind } from "./key-binding.js";
-import {
-  createCommandsFromScriptedInput,
-  showcaseScriptedInput
-} from "./scripted-input-source.js";
+import { createCommandsFromScriptedInput, showcaseScriptedInput } from "./scripted-input-source.js";
 
 describe("Input system", () => {
   it("maps keyboard keys to command kinds", () => {
@@ -20,7 +17,7 @@ describe("Input system", () => {
       buffer: emptyCommandBuffer,
       kind: "accelerate",
       tick: 3,
-      source: "keyboard"
+      source: "keyboard",
     });
 
     expect(getCommandsForTick({ buffer, tick: 3 })).toHaveLength(1);
@@ -34,7 +31,7 @@ describe("Input system", () => {
     expect(commands[0]).toEqual({
       kind: "accelerate",
       tick: 1,
-      source: "script"
+      source: "script",
     });
   });
 });

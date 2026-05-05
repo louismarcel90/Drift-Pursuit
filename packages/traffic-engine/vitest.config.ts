@@ -10,7 +10,10 @@ export default defineConfig({
         "../deterministic-rng/src/index.ts",
       ),
       "@drift-pursuit-grid/state-store": resolve(__dirname, "../state-store/src/index.ts"),
-      "@drift-pursuit-grid/vehicle-dynamics": resolve(__dirname, "../vehicle-dynamics/src/index.ts"),
+      "@drift-pursuit-grid/vehicle-dynamics": resolve(
+        __dirname,
+        "../vehicle-dynamics/src/index.ts",
+      ),
     },
   },
   test: {

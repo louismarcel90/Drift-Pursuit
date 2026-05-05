@@ -10,16 +10,16 @@ export type ScriptedInputSource = {
 };
 
 export function createCommandsFromScriptedInput(
-  source: ScriptedInputSource
+  source: ScriptedInputSource,
 ): readonly PlayerCommand[] {
   return source.steps.flatMap((step) =>
     step.commands.map(
       (commandKind): PlayerCommand => ({
         kind: commandKind,
         tick: step.tick,
-        source: "script"
-      })
-    )
+        source: "script",
+      }),
+    ),
   );
 }
 
@@ -27,43 +27,43 @@ export const showcaseScriptedInput: ScriptedInputSource = {
   steps: [
     {
       tick: 1,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 2,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 3,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 4,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 5,
-      commands: ["steer-right", "handbrake"]
+      commands: ["steer-right", "handbrake"],
     },
     {
       tick: 6,
-      commands: ["steer-right", "handbrake"]
+      commands: ["steer-right", "handbrake"],
     },
     {
       tick: 7,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 8,
-      commands: ["steer-left"]
+      commands: ["steer-left"],
     },
     {
       tick: 9,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 10,
-      commands: ["accelerate"]
-    }
-  ]
+      commands: ["accelerate"],
+    },
+  ],
 };

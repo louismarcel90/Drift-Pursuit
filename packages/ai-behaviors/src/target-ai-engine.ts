@@ -62,7 +62,10 @@ function deriveNextSpeed(params: {
   return clamp(Math.max(params.currentSpeed, boostedSpeed), 0, params.config.maxSpeed);
 }
 
-function hasNearbyTraffic(targetVehicle: TargetVehicle, trafficVehicles: readonly TrafficVehicle[]): boolean {
+function hasNearbyTraffic(
+  targetVehicle: TargetVehicle,
+  trafficVehicles: readonly TrafficVehicle[],
+): boolean {
   return trafficVehicles.some((trafficVehicle) => {
     const deltaX = Math.abs(trafficVehicle.position.x - targetVehicle.position.x);
     const deltaY = Math.abs(trafficVehicle.position.y - targetVehicle.position.y);
@@ -85,21 +88,21 @@ function deriveDecision(params: {
   if (params.pressureFactor >= 0.7 && !nearbyTraffic) {
     return {
       kind: "pressure-escape",
-      reason: "Target increases escape behavior because pursuit pressure is high."
+      reason: "Target increases escape behavior because pursuit pressure is high.",
     };
   }
 
   if (params.pressureFactor >= 0.45) {
     return {
       kind: "increase-speed",
-      reason: "Target increases speed because pursuit pressure is rising."
+      reason: "Target increases speed because pursuit pressure is rising.",
     };
   }
 
   if (params.lateralRoll && !nearbyTraffic) {
     return {
       kind: params.lateralDirection < 0 ? "shift-left" : "shift-right",
-      reason: "Target shifts lane to create pursuit instability."
+      reason: "Target shifts lane to create pursuit instability.",
     };
   }
 
@@ -107,7 +110,7 @@ function deriveDecision(params: {
     kind: "hold-line",
     reason: nearbyTraffic
       ? "Target holds line because nearby traffic limits maneuvering."
-      : "Target holds line because pressure is manageable."
+      : "Target holds line because pressure is manageable.",
   };
 }
 
@@ -157,44 +160,44 @@ export function updateTargetAi(input: TargetAiInput): TargetAiResult {
     lateralRoll,
     lateralDirection,
     pressureFactor,
-    profile
+    profile,
   });
 
   const nextSpeed = deriveNextSpeed({
     currentSpeed: input.targetVehicle.dynamics.speed,
     pressureFactor,
-    config
+    config,
   });
 
   const lateralOffset = deriveLateralOffset(decision, config);
   const headingOffset = deriveHeadingOffset(decision, config);
   const nextHeadingDegrees = normalizeHeadingDegrees(
-    input.targetVehicle.dynamics.headingDegrees + headingOffset
+    input.targetVehicle.dynamics.headingDegrees + headingOffset,
   );
 
   const nextVelocity = {
     x: Number(nextSpeed.toFixed(4)),
-    y: Number(lateralOffset.toFixed(4))
+    y: Number(lateralOffset.toFixed(4)),
   };
 
   const nextTargetVehicle: TargetVehicle = {
     ...input.targetVehicle,
     position: {
       x: Number((input.targetVehicle.position.x + nextVelocity.x * 0.2).toFixed(4)),
-      y: Number((input.targetVehicle.position.y + nextVelocity.y).toFixed(4))
+      y: Number((input.targetVehicle.position.y + nextVelocity.y).toFixed(4)),
     },
     dynamics: {
       ...input.targetVehicle.dynamics,
       speed: nextSpeed,
       headingDegrees: nextHeadingDegrees,
       velocity: nextVelocity,
-      controlState: decision.kind === "hold-line" ? "stable" : "recovering"
-    }
+      controlState: decision.kind === "hold-line" ? "stable" : "recovering",
+    },
   };
 
   return {
     targetVehicle: nextTargetVehicle,
     decision,
-    rng: rngAfterDirectionRoll
+    rng: rngAfterDirectionRoll,
   };
 }

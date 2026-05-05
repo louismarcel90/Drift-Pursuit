@@ -20,7 +20,7 @@ function projectEvent(event: SimulationEvent): DigestJsonValue {
   return {
     kind: event.kind,
     tick: event.tick,
-    message: event.message
+    message: event.message,
   };
 }
 
@@ -39,7 +39,7 @@ function projectFinalState(state: AuthoritativeSimulationState): DigestJsonValue
       headingDegrees: state.playerVehicle.dynamics.headingDegrees,
       driftFactor: state.playerVehicle.dynamics.driftFactor,
       controlLevel: state.playerVehicle.dynamics.controlLevel,
-      controlState: state.playerVehicle.dynamics.controlState
+      controlState: state.playerVehicle.dynamics.controlState,
     },
     targetVehicle:
       state.targetVehicle === undefined
@@ -49,19 +49,19 @@ function projectFinalState(state: AuthoritativeSimulationState): DigestJsonValue
             x: state.targetVehicle.position.x,
             y: state.targetVehicle.position.y,
             speed: state.targetVehicle.dynamics.speed,
-            headingDegrees: state.targetVehicle.dynamics.headingDegrees
+            headingDegrees: state.targetVehicle.dynamics.headingDegrees,
           },
     pursuitState: {
       lockState: state.pursuitState.lockState,
       targetDistance: state.pursuitState.targetDistance,
       pursuitPressure: state.pursuitState.pursuitPressure,
       interceptWindowOpen: state.pursuitState.interceptWindowOpen,
-      lastReasonCode: state.pursuitState.lastReasonCode ?? null
+      lastReasonCode: state.pursuitState.lastReasonCode ?? null,
     },
     trafficVehicleCount: state.trafficVehicles.length,
     incidentCount: state.incidents.length,
     degradedModeCount: state.degradedModes.length,
-    eventCount: state.events.length
+    eventCount: state.events.length,
   };
 }
 
@@ -77,7 +77,7 @@ function projectDebrief(debrief: DebriefSummary): DigestJsonValue {
     incidentCount: debrief.incidentCount,
     finalTargetDistance: debrief.finalTargetDistance,
     finalPursuitPressure: debrief.finalPursuitPressure,
-    highlightCount: debrief.highlights.length
+    highlightCount: debrief.highlights.length,
   };
 }
 
@@ -91,15 +91,17 @@ function createIntegrityManifest(input: CreateEvidencePackInput): EvidenceIntegr
     tickDurationMs: input.scenario.tickDurationMs,
     trafficProfile: input.scenario.trafficProfile,
     incidentProfile: input.scenario.incidentProfile,
-    degradedProfile: input.scenario.degradedProfile
+    degradedProfile: input.scenario.degradedProfile,
   });
 
   const inputLogDigest = createDigest(
-    input.replayRecord.inputLog.map((command): DigestJsonValue => ({
-      kind: command.kind,
-      tick: command.tick,
-      source: command.source
-    }))
+    input.replayRecord.inputLog.map(
+      (command): DigestJsonValue => ({
+        kind: command.kind,
+        tick: command.tick,
+        source: command.source,
+      }),
+    ),
   );
 
   const eventLogDigest = createDigest(input.finalState.events.map(projectEvent));
@@ -112,7 +114,7 @@ function createIntegrityManifest(input: CreateEvidencePackInput): EvidenceIntegr
     tickDurationMs: input.replayRecord.tickDurationMs,
     totalTicks: input.replayRecord.totalTicks,
     expectedFinalChecksum: input.replayRecord.expectedFinalChecksum,
-    verificationStatus: input.replayVerification.status
+    verificationStatus: input.replayVerification.status,
   });
 
   const evidencePackDigest = createDigest({
@@ -123,7 +125,7 @@ function createIntegrityManifest(input: CreateEvidencePackInput): EvidenceIntegr
     eventLogDigest,
     finalStateDigest,
     debriefDigest,
-    replayDigest
+    replayDigest,
   });
 
   return {
@@ -133,7 +135,7 @@ function createIntegrityManifest(input: CreateEvidencePackInput): EvidenceIntegr
     finalStateDigest,
     debriefDigest,
     replayDigest,
-    evidencePackDigest
+    evidencePackDigest,
   };
 }
 
@@ -152,7 +154,7 @@ export function createEvidencePack(input: CreateEvidencePackInput): EvidencePack
     replayVerification: input.replayVerification,
     finalState: input.finalState,
     debrief: input.debrief,
-    integrity
+    integrity,
   };
 }
 
@@ -171,6 +173,6 @@ export function renderEvidencePackSummary(pack: EvidencePack): string {
     `State Digest     : ${pack.integrity.finalStateDigest}`,
     `Debrief Digest   : ${pack.integrity.debriefDigest}`,
     `Replay Digest    : ${pack.integrity.replayDigest}`,
-    `Evidence Digest  : ${pack.integrity.evidencePackDigest}`
+    `Evidence Digest  : ${pack.integrity.evidencePackDigest}`,
   ].join("\n");
 }

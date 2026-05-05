@@ -1,7 +1,7 @@
 import type { PlayerCommand } from "@drift-pursuit-grid/contracts";
 import {
   advanceSimulationTick,
-  createSimulationRuntime
+  createSimulationRuntime,
 } from "@drift-pursuit-grid/simulation-core";
 
 import { createStateChecksum } from "./replay-checksum.js";
@@ -19,7 +19,7 @@ export function runSimulationForReplayRecord(input: CreateReplayRecordInput): Re
   let runtime = createSimulationRuntime({
     scenarioId: input.scenarioId,
     seed: input.seed,
-    tickDurationMs: input.tickDurationMs
+    tickDurationMs: input.tickDurationMs,
   });
 
   for (let index = 0; index < input.totalTicks; index += 1) {
@@ -35,14 +35,14 @@ export function runSimulationForReplayRecord(input: CreateReplayRecordInput): Re
     tickDurationMs: input.tickDurationMs,
     totalTicks: input.totalTicks,
     inputLog: input.inputLog,
-    expectedFinalChecksum
+    expectedFinalChecksum,
   };
 
   return {
     replayRecord,
     finalState: runtime.authoritativeState,
     actualFinalChecksum: expectedFinalChecksum,
-    verified: true
+    verified: true,
   };
 }
 
@@ -50,7 +50,7 @@ export function replayFromRecord(record: ReplayRecord): ReplayRunResult {
   let runtime = createSimulationRuntime({
     scenarioId: record.scenarioId,
     seed: record.seed,
-    tickDurationMs: record.tickDurationMs
+    tickDurationMs: record.tickDurationMs,
   });
 
   for (let index = 0; index < record.totalTicks; index += 1) {
@@ -64,7 +64,7 @@ export function replayFromRecord(record: ReplayRecord): ReplayRunResult {
     replayRecord: record,
     finalState: runtime.authoritativeState,
     actualFinalChecksum,
-    verified: actualFinalChecksum === record.expectedFinalChecksum
+    verified: actualFinalChecksum === record.expectedFinalChecksum,
   };
 }
 
@@ -75,7 +75,7 @@ export function verifyReplayRecord(record: ReplayRecord): ReplayVerificationResu
     return {
       status: "verified",
       expectedChecksum: record.expectedFinalChecksum,
-      actualChecksum: replayResult.actualFinalChecksum
+      actualChecksum: replayResult.actualFinalChecksum,
     };
   }
 
@@ -83,6 +83,6 @@ export function verifyReplayRecord(record: ReplayRecord): ReplayVerificationResu
     status: "diverged",
     expectedChecksum: record.expectedFinalChecksum,
     actualChecksum: replayResult.actualFinalChecksum,
-    reason: "Replay final checksum did not match expected checksum."
+    reason: "Replay final checksum did not match expected checksum.",
   };
 }

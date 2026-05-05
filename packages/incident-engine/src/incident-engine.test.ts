@@ -21,14 +21,14 @@ describe("Incident engine", () => {
         tick,
         playerPosition,
         incidents: firstIncidents,
-        rng: firstRng
+        rng: firstRng,
       });
 
       const secondResult = updateIncidentEngine({
         tick,
         playerPosition,
         incidents: secondIncidents,
-        rng: secondRng
+        rng: secondRng,
       });
 
       firstIncidents = firstResult.incidents;
@@ -57,8 +57,8 @@ describe("Incident engine", () => {
           minForwardOffset: 5,
           maxForwardOffset: 6,
           minDurationTicks: 100,
-          maxDurationTicks: 100
-        }
+          maxDurationTicks: 100,
+        },
       });
 
       incidents = result.incidents;
@@ -83,8 +83,8 @@ describe("Incident engine", () => {
         minForwardOffset: 5,
         maxForwardOffset: 5,
         minDurationTicks: 1,
-        maxDurationTicks: 1
-      }
+        maxDurationTicks: 1,
+      },
     });
 
     incidents = created.incidents;
@@ -101,8 +101,8 @@ describe("Incident engine", () => {
         minForwardOffset: 5,
         maxForwardOffset: 5,
         minDurationTicks: 1,
-        maxDurationTicks: 1
-      }
+        maxDurationTicks: 1,
+      },
     });
 
     expect(resolved.incidents).toHaveLength(0);

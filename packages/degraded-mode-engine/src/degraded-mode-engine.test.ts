@@ -22,10 +22,10 @@ describe("Degraded mode engine", () => {
             degradedModeKind: "partial-hud",
             activationChancePerTick: 1,
             minDurationTicks: 5,
-            maxDurationTicks: 5
-          }
-        ]
-      }
+            maxDurationTicks: 5,
+          },
+        ],
+      },
     });
 
     expect(result.activatedMode?.kind).toBe("partial-hud");
@@ -41,7 +41,7 @@ describe("Degraded mode engine", () => {
       status: "active",
       activatedAtTick: 1,
       recoveredAtTick: 3,
-      faultCode: "hud-partial-failure"
+      faultCode: "hud-partial-failure",
     };
 
     const result = updateDegradedModeEngine({
@@ -51,8 +51,8 @@ describe("Degraded mode engine", () => {
       config: {
         enabled: false,
         maxActiveDegradedModes: 2,
-        rules: []
-      }
+        rules: [],
+      },
     });
 
     expect(result.degradedModes).toHaveLength(0);
@@ -68,7 +68,7 @@ describe("Degraded mode engine", () => {
       status: "active",
       activatedAtTick: 1,
       recoveredAtTick: 10,
-      faultCode: "hud-partial-failure"
+      faultCode: "hud-partial-failure",
     };
 
     const result = updateDegradedModeEngine({
@@ -84,10 +84,10 @@ describe("Degraded mode engine", () => {
             degradedModeKind: "reduced-visibility",
             activationChancePerTick: 1,
             minDurationTicks: 5,
-            maxDurationTicks: 5
-          }
-        ]
-      }
+            maxDurationTicks: 5,
+          },
+        ],
+      },
     });
 
     expect(result.degradedModes).toHaveLength(1);

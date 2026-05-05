@@ -39,6 +39,6 @@ export function extractDebriefEvents(events: readonly SimulationEvent[]): Extrac
     collisionEvents: events.filter((event) => event.kind === "collision-detected"),
     incidentEvents: events.filter((event) => event.kind === "incident-created"),
     pursuitLossEvents: events.filter((event) => event.kind === "pursuit-lock-lost"),
-    interceptEvents: events.filter((event) => event.kind === "intercept-window-opened")
+    interceptEvents: events.filter((event) => event.kind === "intercept-window-opened"),
   };
 }

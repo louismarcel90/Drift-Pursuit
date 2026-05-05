@@ -46,8 +46,7 @@ export function renderAsciiFrame(model: RenderModel): string {
   const gridRows = renderGrid(model);
 
   const hudRows = model.hudLines.map(renderHudLine);
-  const eventRows =
-    model.eventFeed.length === 0 ? ["No events yet."] : model.eventFeed;
+  const eventRows = model.eventFeed.length === 0 ? ["No events yet."] : model.eventFeed;
 
   return [
     model.title,
@@ -59,6 +58,6 @@ export function renderAsciiFrame(model: RenderModel): string {
     ...hudRows,
     "",
     "EVENT FEED",
-    ...eventRows
+    ...eventRows,
   ].join("\n");
 }

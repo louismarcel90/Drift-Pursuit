@@ -1,8 +1,15 @@
 import { describe, expect, it } from "vitest";
 
-import { createCommandsFromScriptedInput, showcaseScriptedInput } from "../../../packages/input-system/src/index.js";
+import {
+  createCommandsFromScriptedInput,
+  showcaseScriptedInput,
+} from "../../../packages/input-system/src/index.js";
 
-import { replayFromRecord, runSimulationForReplayRecord, verifyReplayRecord } from "./replay-engine.js";
+import {
+  replayFromRecord,
+  runSimulationForReplayRecord,
+  verifyReplayRecord,
+} from "./replay-engine.js";
 
 describe("Replay engine", () => {
   it("creates a replay record and verifies it deterministically", () => {
@@ -13,7 +20,7 @@ describe("Replay engine", () => {
       seed: 20260502,
       tickDurationMs: 100,
       totalTicks: 24,
-      inputLog
+      inputLog,
     });
 
     const replayRun = replayFromRecord(initialRun.replayRecord);
@@ -30,12 +37,12 @@ describe("Replay engine", () => {
       seed: 20260502,
       tickDurationMs: 100,
       totalTicks: 24,
-      inputLog
+      inputLog,
     });
 
     const corruptedRecord = {
       ...initialRun.replayRecord,
-      expectedFinalChecksum: "00000000"
+      expectedFinalChecksum: "00000000",
     };
 
     const verification = verifyReplayRecord(corruptedRecord);

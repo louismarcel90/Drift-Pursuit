@@ -7,5 +7,5 @@ export type AsciiRendererConfig = {
 export const defaultAsciiRendererConfig: AsciiRendererConfig = {
   width: 64,
   height: 18,
-  eventFeedLimit: 6
+  eventFeedLimit: 6,
 };

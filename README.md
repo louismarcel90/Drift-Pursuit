@@ -5,14 +5,13 @@
 
 > Terminal ASCII Premium. Replayable. Explainable <br/>
 
-
 ![Node](https://img.shields.io/badge/node-%3E%3D18-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![CLI](https://img.shields.io/badge/interface-CLI-black)
 
 ---
 
-## 🧠 What is Drift Pursuit  / Why It Exists
+## 🧠 What is Drift Pursuit / Why It Exists
 
 ---
 

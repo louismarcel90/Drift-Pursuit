@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
   createGridPosition,
   createInitialPursuitState,
-  createStoppedPlayerVehicle
+  createStoppedPlayerVehicle,
 } from "@drift-pursuit-grid/domain";
 import { createAuthoritativeSimulationState } from "@drift-pursuit-grid/state-store";
 
@@ -21,14 +21,14 @@ describe("ASCII renderer", () => {
       missionProgress: {
         missionId: "test.renderer",
         status: "in-progress",
-        completedObjectiveIds: []
-      }
+        completedObjectiveIds: [],
+      },
     });
 
     const model = projectAsciiRenderModel(state, {
       width: 20,
       height: 10,
-      eventFeedLimit: 3
+      eventFeedLimit: 3,
     });
 
     expect(model.title).toBe("DRIFT PURSUIT GRID");
@@ -45,14 +45,14 @@ describe("ASCII renderer", () => {
       missionProgress: {
         missionId: "test.renderer.frame",
         status: "in-progress",
-        completedObjectiveIds: []
-      }
+        completedObjectiveIds: [],
+      },
     });
 
     const model = projectAsciiRenderModel(state, {
       width: 20,
       height: 10,
-      eventFeedLimit: 3
+      eventFeedLimit: 3,
     });
 
     const frame = renderAsciiFrame(model);

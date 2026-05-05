@@ -9,14 +9,14 @@ export function updateIncidentLifecycle(params: {
       if (incident.endsAtTick !== undefined && params.tick >= incident.endsAtTick) {
         return {
           ...incident,
-          status: "resolved"
+          status: "resolved",
         };
       }
 
       if (params.tick >= incident.startsAtTick && incident.status === "scheduled") {
         return {
           ...incident,
-          status: "active"
+          status: "active",
         };
       }
 

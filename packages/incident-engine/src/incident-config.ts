@@ -13,5 +13,5 @@ export const defaultIncidentEngineConfig: IncidentEngineConfig = {
   minForwardOffset: 10,
   maxForwardOffset: 28,
   minDurationTicks: 6,
-  maxDurationTicks: 14
+  maxDurationTicks: 14,
 };

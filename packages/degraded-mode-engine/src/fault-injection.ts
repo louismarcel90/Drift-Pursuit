@@ -11,10 +11,10 @@ export type FaultInjectionResult = {
 
 function isModeAlreadyActive(
   degradedModes: readonly DegradedMode[],
-  rule: FaultInjectionRule
+  rule: FaultInjectionRule,
 ): boolean {
   return degradedModes.some(
-    (mode) => mode.kind === rule.degradedModeKind && mode.status === "active"
+    (mode) => mode.kind === rule.degradedModeKind && mode.status === "active",
   );
 }
 
@@ -28,7 +28,7 @@ function createDegradedMode(params: {
     status: "active",
     activatedAtTick: params.tick,
     recoveredAtTick: params.tick + params.durationTicks,
-    faultCode: params.rule.faultCode
+    faultCode: params.rule.faultCode,
   };
 }
 
@@ -44,14 +44,14 @@ export function injectFaultIfRequired(params: {
   if (!config.enabled) {
     return {
       degradedModes,
-      rng
+      rng,
     };
   }
 
   if (degradedModes.length >= config.maxActiveDegradedModes) {
     return {
       degradedModes,
-      rng
+      rng,
     };
   }
 
@@ -60,9 +60,7 @@ export function injectFaultIfRequired(params: {
       continue;
     }
 
-    const [shouldActivate, rngAfterActivationRoll] = rng.nextBoolean(
-      rule.activationChancePerTick
-    );
+    const [shouldActivate, rngAfterActivationRoll] = rng.nextBoolean(rule.activationChancePerTick);
     rng = rngAfterActivationRoll;
 
     if (!shouldActivate) {
@@ -71,25 +69,25 @@ export function injectFaultIfRequired(params: {
 
     const [durationTicks, rngAfterDuration] = rng.nextInt(
       rule.minDurationTicks,
-      rule.maxDurationTicks
+      rule.maxDurationTicks,
     );
     rng = rngAfterDuration;
 
     const activatedMode = createDegradedMode({
       rule,
       tick,
-      durationTicks
+      durationTicks,
     });
 
     return {
       degradedModes: [...degradedModes, activatedMode],
       rng,
-      activatedMode
+      activatedMode,
     };
   }
 
   return {
     degradedModes,
-    rng
+    rng,
   };
 }

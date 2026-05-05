@@ -10,9 +10,7 @@ export type DegradedModeKind =
   | "critical-hud"
   | "intermittent-hud";
 
-export type DegradedModeStatus =
-  | "active"
-  | "recovered";
+export type DegradedModeStatus = "active" | "recovered";
 
 export type DegradedState = {
   level: DegradedModeKind;

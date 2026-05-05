@@ -15,29 +15,29 @@ export const firstContactScenario: ScenarioDefinition = {
   scriptedInput: [
     {
       tick: 1,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 2,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 3,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 5,
-      commands: ["steer-right"]
+      commands: ["steer-right"],
     },
     {
       tick: 6,
-      commands: ["steer-left"]
+      commands: ["steer-left"],
     },
     {
       tick: 8,
-      commands: ["accelerate"]
-    }
-  ]
+      commands: ["accelerate"],
+    },
+  ],
 };
 
 export const downtownPressureScenario: ScenarioDefinition = {
@@ -55,45 +55,45 @@ export const downtownPressureScenario: ScenarioDefinition = {
   scriptedInput: [
     {
       tick: 1,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 2,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 3,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 4,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 5,
-      commands: ["steer-right", "handbrake"]
+      commands: ["steer-right", "handbrake"],
     },
     {
       tick: 6,
-      commands: ["steer-right", "handbrake"]
+      commands: ["steer-right", "handbrake"],
     },
     {
       tick: 7,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 8,
-      commands: ["steer-left"]
+      commands: ["steer-left"],
     },
     {
       tick: 9,
-      commands: ["accelerate"]
+      commands: ["accelerate"],
     },
     {
       tick: 10,
-      commands: ["accelerate"]
-    }
-  ]
+      commands: ["accelerate"],
+    },
+  ],
 };
 
 export const perfectStormScenario: ScenarioDefinition = {
@@ -108,11 +108,11 @@ export const perfectStormScenario: ScenarioDefinition = {
   trafficProfile: "medium",
   incidentProfile: "dynamic",
   degradedProfile: "light",
-  scriptedInput: downtownPressureScenario.scriptedInput
+  scriptedInput: downtownPressureScenario.scriptedInput,
 };
 
 export const builtInScenarios: readonly ScenarioDefinition[] = [
   firstContactScenario,
   downtownPressureScenario,
-  perfectStormScenario
+  perfectStormScenario,
 ];

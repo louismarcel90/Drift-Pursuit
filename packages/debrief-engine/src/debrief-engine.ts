@@ -40,23 +40,24 @@ function createHighlights(state: AuthoritativeSimulationState): readonly Debrief
         "collision-detected",
         "pursuit-lock-lost",
         "intercept-window-opened",
-        "incident-created"
-      ].includes(event.kind)
+        "incident-created",
+      ].includes(event.kind),
     )
-    .map((event): DebriefHighlight => ({
-  kind: createHighlightKind(event.kind),
-  tick: event.tick,
-  message: event.message,
-  reasonCode:
-    REASON_CODE_MAP[event.kind] ?? "high-risk-recovery",
-}));
+    .map(
+      (event): DebriefHighlight => ({
+        kind: createHighlightKind(event.kind),
+        tick: event.tick,
+        message: event.message,
+        reasonCode: REASON_CODE_MAP[event.kind] ?? "high-risk-recovery",
+      }),
+    );
 }
 
 export function createDebriefSummary(state: AuthoritativeSimulationState): DebriefSummary {
   const extractedEvents = extractDebriefEvents(state.events);
   const explanation = explainMissionOutcome({
     state,
-    extractedEvents
+    extractedEvents,
   });
 
   return {
@@ -72,7 +73,7 @@ export function createDebriefSummary(state: AuthoritativeSimulationState): Debri
     collisionCount: extractedEvents.collisionEvents.length,
     incidentCount: extractedEvents.incidentEvents.length,
     finalTargetDistance: state.pursuitState.targetDistance,
-    finalPursuitPressure: state.pursuitState.pursuitPressure
+    finalPursuitPressure: state.pursuitState.pursuitPressure,
   };
 }
 
@@ -99,6 +100,6 @@ export function renderDebriefSummary(summary: DebriefSummary): string {
     `Final Pressure  : ${summary.finalPursuitPressure.toFixed(2)}`,
     "",
     "Highlights",
-    ...highlightLines
+    ...highlightLines,
   ].join("\n");
 }

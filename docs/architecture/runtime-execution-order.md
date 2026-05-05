@@ -22,3 +22,4 @@ The default tick duration is:
 
 ```text
 100ms
+```

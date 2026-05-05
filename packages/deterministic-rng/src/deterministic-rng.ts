@@ -7,7 +7,10 @@ export type DeterministicRngState = {
 export type DeterministicRng = {
   readonly state: DeterministicRngState;
   readonly nextFloat: () => readonly [number, DeterministicRng];
-  readonly nextInt: (minInclusive: number, maxInclusive: number) => readonly [number, DeterministicRng];
+  readonly nextInt: (
+    minInclusive: number,
+    maxInclusive: number,
+  ) => readonly [number, DeterministicRng];
   readonly nextBoolean: (probabilityTrue: number) => readonly [boolean, DeterministicRng];
 };
 

@@ -7,10 +7,7 @@ import { updatePlayerVehicleDynamics } from "./vehicle-dynamics-update.js";
 
 describe("Vehicle dynamics", () => {
   it("accelerates the player vehicle", () => {
-    const vehicle = createStoppedPlayerVehicle(
-      "player-vehicle",
-      createGridPosition(0, 0),
-    );
+    const vehicle = createStoppedPlayerVehicle("player-vehicle", createGridPosition(0, 0));
 
     const intent = deriveVehicleControlIntent([
       {
@@ -22,17 +19,12 @@ describe("Vehicle dynamics", () => {
 
     const nextVehicle = updatePlayerVehicleDynamics(vehicle, intent);
 
-    expect(nextVehicle.dynamics.speed).toBeGreaterThan(
-      vehicle.dynamics.speed,
-    );
+    expect(nextVehicle.dynamics.speed).toBeGreaterThan(vehicle.dynamics.speed);
     expect(nextVehicle.dynamics.controlState).toBe("stable");
   });
 
   it("brakes without allowing negative speed", () => {
-    const vehicle = createStoppedPlayerVehicle(
-      "player-vehicle",
-      createGridPosition(0, 0),
-    );
+    const vehicle = createStoppedPlayerVehicle("player-vehicle", createGridPosition(0, 0));
 
     const intent = deriveVehicleControlIntent([
       {
@@ -48,10 +40,7 @@ describe("Vehicle dynamics", () => {
   });
 
   it("increases drift when handbrake and steering are applied at speed", () => {
-    const vehicle = createStoppedPlayerVehicle(
-      "player-vehicle",
-      createGridPosition(0, 0),
-    );
+    const vehicle = createStoppedPlayerVehicle("player-vehicle", createGridPosition(0, 0));
 
     const acceleratedVehicle = updatePlayerVehicleDynamics(
       vehicle,
@@ -96,10 +85,7 @@ describe("Vehicle dynamics", () => {
   });
 
   it("recovers drift when handbrake is released", () => {
-    const vehicle = createStoppedPlayerVehicle(
-      "player-vehicle",
-      createGridPosition(0, 0),
-    );
+    const vehicle = createStoppedPlayerVehicle("player-vehicle", createGridPosition(0, 0));
 
     let currentVehicle = vehicle;
 
@@ -133,8 +119,6 @@ describe("Vehicle dynamics", () => {
       deriveVehicleControlIntent([]),
     );
 
-    expect(recoveredVehicle.dynamics.driftFactor).toBeLessThan(
-      driftingFactor,
-    );
+    expect(recoveredVehicle.dynamics.driftFactor).toBeLessThan(driftingFactor);
   });
 });

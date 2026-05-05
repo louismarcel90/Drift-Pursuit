@@ -31,21 +31,21 @@ function createRoadGlyphs(width: number, height: number): readonly RenderGlyph[]
       kind: "road",
       x,
       y: upperLaneY,
-      symbol: "-"
+      symbol: "-",
     });
 
     glyphs.push({
       kind: "road",
       x,
       y: centerY,
-      symbol: "="
+      symbol: "=",
     });
 
     glyphs.push({
       kind: "road",
       x,
       y: lowerLaneY,
-      symbol: "-"
+      symbol: "-",
     });
   }
 
@@ -54,65 +54,63 @@ function createRoadGlyphs(width: number, height: number): readonly RenderGlyph[]
 
 function projectEventFeed(
   events: readonly SimulationEvent[],
-  eventFeedLimit: number
+  eventFeedLimit: number,
 ): readonly string[] {
-  return events
-    .slice(-eventFeedLimit)
-    .map((event) => `[t=${event.tick}] ${event.message}`);
+  return events.slice(-eventFeedLimit).map((event) => `[t=${event.tick}] ${event.message}`);
 }
 
 function createHudLines(state: AuthoritativeSimulationState): readonly HudLine[] {
   return [
     {
       label: "Scenario",
-      value: state.scenarioId
+      value: state.scenarioId,
     },
     {
       label: "Tick",
-      value: state.tick.toString()
+      value: state.tick.toString(),
     },
     {
       label: "Speed",
-      value: state.playerVehicle.dynamics.speed.toFixed(2)
+      value: state.playerVehicle.dynamics.speed.toFixed(2),
     },
     {
       label: "Control",
-      value: state.playerVehicle.dynamics.controlState
+      value: state.playerVehicle.dynamics.controlState,
     },
     {
       label: "Pursuit",
-      value: state.pursuitState.lockState
+      value: state.pursuitState.lockState,
     },
     {
       label: "Distance",
-      value: state.pursuitState.targetDistance.toFixed(2)
+      value: state.pursuitState.targetDistance.toFixed(2),
     },
     {
       label: "Pressure",
-      value: state.pursuitState.pursuitPressure.toFixed(2)
+      value: state.pursuitState.pursuitPressure.toFixed(2),
     },
     {
       label: "Traffic",
-      value: state.trafficVehicles.length.toString()
+      value: state.trafficVehicles.length.toString(),
     },
     {
       label: "Incidents",
-      value: state.incidents.length.toString()
+      value: state.incidents.length.toString(),
     },
-        {
+    {
       label: "Health",
-      value: state.degradedModes.length > 0 ? "degraded" : "nominal"
+      value: state.degradedModes.length > 0 ? "degraded" : "nominal",
     },
     {
       label: "Degraded",
-      value: state.degradedModes.length.toString()
-    }
+      value: state.degradedModes.length.toString(),
+    },
   ];
 }
 
 export function projectAsciiRenderModel(
   state: AuthoritativeSimulationState,
-  config: AsciiRendererConfig = defaultAsciiRendererConfig
+  config: AsciiRendererConfig = defaultAsciiRendererConfig,
 ): RenderModel {
   const roadGlyphs = createRoadGlyphs(config.width, config.height);
 
@@ -120,7 +118,7 @@ export function projectAsciiRenderModel(
     kind: "player",
     x: normalizeToGrid(state.playerVehicle.position.x, config.width),
     y: normalizeToGrid(state.playerVehicle.position.y, config.height),
-    symbol: "P"
+    symbol: "P",
   };
 
   const targetGlyphs: readonly RenderGlyph[] =
@@ -131,8 +129,8 @@ export function projectAsciiRenderModel(
             kind: "target",
             x: normalizeToGrid(state.targetVehicle.position.x, config.width),
             y: normalizeToGrid(state.targetVehicle.position.y, config.height),
-            symbol: "T"
-          }
+            symbol: "T",
+          },
         ];
 
   const trafficGlyphs = state.trafficVehicles.map(
@@ -140,8 +138,8 @@ export function projectAsciiRenderModel(
       kind: "traffic",
       x: normalizeToGrid(vehicle.position.x, config.width),
       y: normalizeToGrid(vehicle.position.y, config.height),
-      symbol: "C"
-    })
+      symbol: "C",
+    }),
   );
 
   const incidentGlyphs = state.incidents.map(
@@ -149,8 +147,8 @@ export function projectAsciiRenderModel(
       kind: "incident",
       x: normalizeToGrid(incident.position.x, config.width),
       y: normalizeToGrid(incident.position.y, config.height),
-      symbol: "!"
-    })
+      symbol: "!",
+    }),
   );
 
   return {
@@ -159,6 +157,6 @@ export function projectAsciiRenderModel(
     height: config.height,
     glyphs: [...roadGlyphs, ...targetGlyphs, ...trafficGlyphs, ...incidentGlyphs, playerGlyph],
     hudLines: createHudLines(state),
-    eventFeed: projectEventFeed(state.events, config.eventFeedLimit)
+    eventFeed: projectEventFeed(state.events, config.eventFeedLimit),
   };
 }

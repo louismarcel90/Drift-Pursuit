@@ -23,7 +23,7 @@ export function explainMissionOutcome(params: {
       primaryReasonCode: "target-distance-exceeded",
       headline: "Pursuit failed: target distance exceeded.",
       explanation:
-        "The pursuit lock was lost because the target moved outside the allowed tracking distance."
+        "The pursuit lock was lost because the target moved outside the allowed tracking distance.",
     };
   }
 
@@ -33,7 +33,7 @@ export function explainMissionOutcome(params: {
       primaryReasonCode: "mission-objective-completed",
       headline: "Interception opportunity achieved.",
       explanation:
-        "The player maintained enough pursuit pressure and closed the target distance enough to open an interception window."
+        "The player maintained enough pursuit pressure and closed the target distance enough to open an interception window.",
     };
   }
 
@@ -43,7 +43,7 @@ export function explainMissionOutcome(params: {
       primaryReasonCode: "collision-control-loss",
       headline: "Run degraded by collision impact.",
       explanation:
-        "One or more collisions reduced speed or control, affecting pursuit quality and future scoring."
+        "One or more collisions reduced speed or control, affecting pursuit quality and future scoring.",
     };
   }
 
@@ -53,7 +53,7 @@ export function explainMissionOutcome(params: {
       primaryReasonCode: "mission-timeout",
       headline: "Pursuit maintained but not completed.",
       explanation:
-        "The player kept the target under pressure, but no final interception or mission completion condition was reached."
+        "The player kept the target under pressure, but no final interception or mission completion condition was reached.",
     };
   }
 
@@ -61,7 +61,6 @@ export function explainMissionOutcome(params: {
     outcome: "incomplete",
     primaryReasonCode: "mission-timeout",
     headline: "Mission incomplete.",
-    explanation:
-      "The session ended before a decisive success or failure condition was reached."
+    explanation: "The session ended before a decisive success or failure condition was reached.",
   };
 }

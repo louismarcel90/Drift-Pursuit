@@ -13,7 +13,6 @@ import type {
   TrafficVehicle,
 } from "@drift-pursuit-grid/domain";
 
-
 export type AuthoritativeSimulationState = {
   readonly scenarioId: string;
   readonly seed: number;
@@ -31,7 +30,6 @@ export type AuthoritativeSimulationState = {
 };
 
 export type CreateAuthoritativeStateInput = {
-  
   readonly scenarioId: string;
   readonly seed: number;
   readonly mode: SimulationMode;

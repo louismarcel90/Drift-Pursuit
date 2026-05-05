@@ -19,49 +19,46 @@ export const emptyVehicleControlIntent: VehicleControlIntent = {
 export function deriveVehicleControlIntent(
   commands: readonly PlayerCommand[],
 ): VehicleControlIntent {
-  return commands.reduce<VehicleControlIntent>(
-    (intent, command) => {
-      switch (command.kind) {
-        case "accelerate":
-          return {
-            ...intent,
-            accelerate: true,
-          };
+  return commands.reduce<VehicleControlIntent>((intent, command) => {
+    switch (command.kind) {
+      case "accelerate":
+        return {
+          ...intent,
+          accelerate: true,
+        };
 
-        case "brake":
-          return {
-            ...intent,
-            brake: true,
-          };
+      case "brake":
+        return {
+          ...intent,
+          brake: true,
+        };
 
-        case "steer-left":
-          return {
-            ...intent,
-            steerLeft: true,
-          };
+      case "steer-left":
+        return {
+          ...intent,
+          steerLeft: true,
+        };
 
-        case "steer-right":
-          return {
-            ...intent,
-            steerRight: true,
-          };
+      case "steer-right":
+        return {
+          ...intent,
+          steerRight: true,
+        };
 
-        case "handbrake":
-          return {
-            ...intent,
-            handbrake: true,
-          };
+      case "handbrake":
+        return {
+          ...intent,
+          handbrake: true,
+        };
 
-        case "release-handbrake":
-        case "pause":
-        case "resume":
-        case "replay-step-forward":
-        case "replay-step-backward":
-        case "replay-fast-forward":
-        case "quit":
-          return intent;
-      }
-    },
-    emptyVehicleControlIntent,
-  );
+      case "release-handbrake":
+      case "pause":
+      case "resume":
+      case "replay-step-forward":
+      case "replay-step-backward":
+      case "replay-fast-forward":
+      case "quit":
+        return intent;
+    }
+  }, emptyVehicleControlIntent);
 }

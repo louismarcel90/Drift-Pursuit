@@ -51,11 +51,7 @@ export function applyCollisionEffects(params: {
   const controlPenalty = deriveControlPenalty(params.severity);
 
   const nextSpeed = clamp(params.playerVehicle.dynamics.speed - speedPenalty, 0, 12);
-  const nextControlLevel = clamp(
-    params.playerVehicle.dynamics.controlLevel - controlPenalty,
-    0,
-    1,
-  );
+  const nextControlLevel = clamp(params.playerVehicle.dynamics.controlLevel - controlPenalty, 0, 1);
 
   const nextControlState = nextControlLevel <= 0.4 ? "control-lost" : "recovering";
 

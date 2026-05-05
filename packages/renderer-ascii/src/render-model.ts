@@ -1,10 +1,4 @@
-export type RenderGlyphKind =
-  | "player"
-  | "target"
-  | "traffic"
-  | "incident"
-  | "road"
-  | "empty";
+export type RenderGlyphKind = "player" | "target" | "traffic" | "incident" | "road" | "empty";
 
 export type RenderGlyph = {
   readonly kind: RenderGlyphKind;

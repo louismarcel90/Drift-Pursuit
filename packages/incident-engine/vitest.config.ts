@@ -6,7 +6,10 @@ export default defineConfig({
     alias: {
       "@drift-pursuit-grid/contracts": resolve(__dirname, "../contracts/src/index.ts"),
       "@drift-pursuit-grid/domain": resolve(__dirname, "../domain/src/index.ts"),
-      "@drift-pursuit-grid/deterministic-rng": resolve(__dirname, "../deterministic-rng/src/index.ts"),
+      "@drift-pursuit-grid/deterministic-rng": resolve(
+        __dirname,
+        "../deterministic-rng/src/index.ts",
+      ),
     },
   },
   test: {

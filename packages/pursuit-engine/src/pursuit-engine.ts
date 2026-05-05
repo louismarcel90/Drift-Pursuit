@@ -1,5 +1,10 @@
 import type { ReasonCode } from "@drift-pursuit-grid/contracts";
-import type { GridPosition, PursuitState, TargetVehicle, PlayerVehicle } from "@drift-pursuit-grid/domain";
+import type {
+  GridPosition,
+  PursuitState,
+  TargetVehicle,
+  PlayerVehicle,
+} from "@drift-pursuit-grid/domain";
 
 import { defaultPursuitEngineConfig } from "./pursuit-config.js";
 import type { PursuitEngineConfig } from "./pursuit-config.js";
@@ -40,7 +45,11 @@ function derivePursuitPressure(params: {
     );
   }
 
-  return clamp(params.previousPressure - params.config.pressureLossPerTick, 0, params.config.maxPressure);
+  return clamp(
+    params.previousPressure - params.config.pressureLossPerTick,
+    0,
+    params.config.maxPressure,
+  );
 }
 
 export function updatePursuitState(input: PursuitEngineInput): PursuitEngineResult {
@@ -52,15 +61,15 @@ export function updatePursuitState(input: PursuitEngineInput): PursuitEngineResu
 
   if (targetDistance > config.lockLossDistance) {
     return {
-  pursuitState: {
-    lockState: "lost",
-    targetDistance,
-    pursuitPressure: 0,
-    interceptWindowOpen: false,
-    lastReasonCode: "target-distance-exceeded",
-  },
-  reasonCode: "target-distance-exceeded",
-};
+      pursuitState: {
+        lockState: "lost",
+        targetDistance,
+        pursuitPressure: 0,
+        interceptWindowOpen: false,
+        lastReasonCode: "target-distance-exceeded",
+      },
+      reasonCode: "target-distance-exceeded",
+    };
   }
 
   const hasLock =
@@ -79,17 +88,17 @@ export function updatePursuitState(input: PursuitEngineInput): PursuitEngineResu
     nextPressure >= config.interceptPressureMin;
 
   const reasonCode: ReasonCode | undefined = interceptWindowOpen
-  ? "mission-objective-completed"
-  : undefined;
+    ? "mission-objective-completed"
+    : undefined;
 
-return {
-  pursuitState: {
-    lockState: hasLock ? "acquired" : "not-acquired",
-    targetDistance,
-    pursuitPressure: nextPressure,
-    interceptWindowOpen,
-    ...(reasonCode === undefined ? {} : { lastReasonCode: reasonCode }),
-  },
-  ...(reasonCode === undefined ? {} : { reasonCode }),
-};
+  return {
+    pursuitState: {
+      lockState: hasLock ? "acquired" : "not-acquired",
+      targetDistance,
+      pursuitPressure: nextPressure,
+      interceptWindowOpen,
+      ...(reasonCode === undefined ? {} : { lastReasonCode: reasonCode }),
+    },
+    ...(reasonCode === undefined ? {} : { reasonCode }),
+  };
 }

@@ -25,7 +25,7 @@ export function stableStringifyDigestValue(value: DigestJsonValue): string {
   }
 
   const entries = Object.entries(value).sort(([firstKey], [secondKey]) =>
-    firstKey.localeCompare(secondKey)
+    firstKey.localeCompare(secondKey),
   );
 
   return `{${entries

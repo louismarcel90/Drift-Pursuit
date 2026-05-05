@@ -20,10 +20,10 @@ describe("Target AI engine", () => {
           lockState: "acquired",
           targetDistance: 8,
           pursuitPressure: 0.4,
-          interceptWindowOpen: false
+          interceptWindowOpen: false,
         },
         trafficVehicles: [],
-        rng: firstRng
+        rng: firstRng,
       });
 
       const secondResult = updateTargetAi({
@@ -32,10 +32,10 @@ describe("Target AI engine", () => {
           lockState: "acquired",
           targetDistance: 8,
           pursuitPressure: 0.4,
-          interceptWindowOpen: false
+          interceptWindowOpen: false,
         },
         trafficVehicles: [],
-        rng: secondRng
+        rng: secondRng,
       });
 
       firstTarget = firstResult.targetVehicle;
@@ -58,15 +58,13 @@ describe("Target AI engine", () => {
         lockState: "acquired",
         targetDistance: 5,
         pursuitPressure: 0.9,
-        interceptWindowOpen: false
+        interceptWindowOpen: false,
       },
       trafficVehicles: [],
-      rng
+      rng,
     });
 
-    expect(result.targetVehicle.dynamics.speed).toBeGreaterThanOrEqual(
-      target.dynamics.speed
-    );
+    expect(result.targetVehicle.dynamics.speed).toBeGreaterThanOrEqual(target.dynamics.speed);
     expect(["increase-speed", "pressure-escape"]).toContain(result.decision.kind);
   });
 });

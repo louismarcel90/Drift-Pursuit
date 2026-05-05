@@ -1,5 +1,10 @@
 import type { CollisionKind, CollisionSeverity } from "@drift-pursuit-grid/contracts";
-import type { GridPosition, PlayerVehicle, TargetVehicle, TrafficVehicle } from "@drift-pursuit-grid/domain";
+import type {
+  GridPosition,
+  PlayerVehicle,
+  TargetVehicle,
+  TrafficVehicle,
+} from "@drift-pursuit-grid/domain";
 
 import { defaultCollisionEngineConfig } from "./collision-config.js";
 import type { CollisionEngineConfig } from "./collision-config.js";
@@ -112,7 +117,9 @@ export function detectNearestCollision(params: {
     };
   }
 
-  const impactSpeed = Math.abs(params.playerVehicle.dynamics.speed - nearestCandidate.candidate.speed);
+  const impactSpeed = Math.abs(
+    params.playerVehicle.dynamics.speed - nearestCandidate.candidate.speed,
+  );
 
   return {
     collided: true,

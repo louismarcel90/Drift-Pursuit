@@ -1,10 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import {
-  calculateManhattanDistance,
-  createGridPosition,
-  isInsideWorldBounds,
-} from "./position.js";
+import { calculateManhattanDistance, createGridPosition, isInsideWorldBounds } from "./position.js";
 
 describe("GridPosition domain helpers", () => {
   it("calculates Manhattan distance between two grid positions", () => {

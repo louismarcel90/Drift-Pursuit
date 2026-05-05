@@ -1,5 +1,10 @@
 import type { DeterministicRng } from "@drift-pursuit-grid/deterministic-rng";
-import type { GridPosition, Incident, IncidentKind, IncidentSeverity } from "@drift-pursuit-grid/domain";
+import type {
+  GridPosition,
+  Incident,
+  IncidentKind,
+  IncidentSeverity,
+} from "@drift-pursuit-grid/domain";
 
 import type { IncidentEngineConfig } from "./incident-config.js";
 
@@ -15,7 +20,7 @@ const incidentKinds: readonly IncidentKind[] = [
   "minor-crash",
   "road-work",
   "reduced-visibility-zone",
-  "surface-low-grip"
+  "surface-low-grip",
 ];
 
 const incidentSeverities: readonly IncidentSeverity[] = ["low", "medium", "high"];
@@ -27,11 +32,11 @@ function createIncidentId(tick: number, sequence: number): string {
 function createIncidentPosition(
   playerPosition: GridPosition,
   laneOffset: number,
-  forwardOffset: number
+  forwardOffset: number,
 ): GridPosition {
   return {
     x: playerPosition.x + forwardOffset,
-    y: playerPosition.y + laneOffset
+    y: playerPosition.y + laneOffset,
   };
 }
 
@@ -55,7 +60,7 @@ export function maybeSpawnIncident(params: {
   if (activeIncidents.length >= config.maxActiveIncidents) {
     return {
       incidents: activeIncidents,
-      rng
+      rng,
     };
   }
 
@@ -64,7 +69,7 @@ export function maybeSpawnIncident(params: {
   if (!shouldSpawn) {
     return {
       incidents: activeIncidents,
-      rng: rngAfterSpawnRoll
+      rng: rngAfterSpawnRoll,
     };
   }
 
@@ -73,11 +78,11 @@ export function maybeSpawnIncident(params: {
   const [laneOffset, rngAfterLane] = rngAfterSeverity.nextInt(-1, 1);
   const [forwardOffset, rngAfterOffset] = rngAfterLane.nextInt(
     config.minForwardOffset,
-    config.maxForwardOffset
+    config.maxForwardOffset,
   );
   const [durationTicks, rngAfterDuration] = rngAfterOffset.nextInt(
     config.minDurationTicks,
-    config.maxDurationTicks
+    config.maxDurationTicks,
   );
 
   const incident: Incident = {
@@ -87,12 +92,12 @@ export function maybeSpawnIncident(params: {
     status: "active",
     position: createIncidentPosition(playerPosition, laneOffset, forwardOffset),
     startsAtTick: tick,
-    endsAtTick: tick + durationTicks
+    endsAtTick: tick + durationTicks,
   };
 
   return {
     incidents: [...activeIncidents, incident],
     rng: rngAfterDuration,
-    createdIncident: incident
+    createdIncident: incident,
   };
 }

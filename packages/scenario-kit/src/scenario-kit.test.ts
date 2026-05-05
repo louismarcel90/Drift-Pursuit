@@ -30,7 +30,7 @@ describe("Scenario kit", () => {
     const invalidScenario = {
       ...perfectStormScenario,
       id: "",
-      seed: -1
+      seed: -1,
     };
 
     const result = validateScenarioDefinition(invalidScenario);

@@ -22,7 +22,6 @@
   "dependencies": {
     "@drift-pursuit-grid/deterministic-rng": "workspace:*",
     "@drift-pursuit-grid/domain": "workspace:*",
-    
     "@drift-pursuit-grid/state-store": "workspace:*",
     "@drift-pursuit-grid/vehicle-dynamics": "workspace:*"
   },

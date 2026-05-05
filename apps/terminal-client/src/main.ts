@@ -1,15 +1,21 @@
-import { createDebriefSummary, renderDebriefSummary } from "../../../packages/debrief-engine/src/index.js";
+import {
+  createDebriefSummary,
+  renderDebriefSummary,
+} from "../../../packages/debrief-engine/src/index.js";
 import { loadBuiltInScenario } from "../../../packages/scenario-kit/src/index.js";
 import {
   projectAsciiRenderModel,
-  renderAsciiFrame
+  renderAsciiFrame,
 } from "../../../packages/renderer-ascii/src/index.js";
 import {
   replayFromRecord,
   runSimulationForReplayRecord,
-  verifyReplayRecord
+  verifyReplayRecord,
 } from "../../../packages/replay-engine/src/index.js";
-import { createEvidencePack, renderEvidencePackSummary } from "../../../packages/evidence-engine/src/index.js";
+import {
+  createEvidencePack,
+  renderEvidencePackSummary,
+} from "../../../packages/evidence-engine/src/index.js";
 
 const loadedScenario = loadBuiltInScenario("showcase.perfect-storm");
 const scenario = loadedScenario.scenario.definition;
@@ -19,7 +25,7 @@ const initialRun = runSimulationForReplayRecord({
   seed: scenario.seed,
   tickDurationMs: scenario.tickDurationMs,
   totalTicks: scenario.totalTicks,
-  inputLog: loadedScenario.inputLog
+  inputLog: loadedScenario.inputLog,
 });
 
 const replayRun = replayFromRecord(initialRun.replayRecord);
@@ -31,13 +37,13 @@ const evidencePack = createEvidencePack({
   replayRecord: initialRun.replayRecord,
   replayVerification: verification,
   finalState: replayRun.finalState,
-  debrief: debriefSummary
+  debrief: debriefSummary,
 });
 
 const renderModel = projectAsciiRenderModel(replayRun.finalState, {
   width: 72,
   height: 20,
-  eventFeedLimit: 8
+  eventFeedLimit: 8,
 });
 
 const scenarioSummary = [
@@ -50,7 +56,7 @@ const scenarioSummary = [
   `Ticks      : ${scenario.totalTicks}`,
   `Traffic    : ${scenario.trafficProfile}`,
   `Incidents  : ${scenario.incidentProfile}`,
-  `Degraded   : ${scenario.degradedProfile}`
+  `Degraded   : ${scenario.degradedProfile}`,
 ].join("\n");
 
 const replaySummary = [
@@ -59,7 +65,7 @@ const replaySummary = [
   `Status            : ${verification.status}`,
   `Expected Checksum : ${initialRun.replayRecord.expectedFinalChecksum}`,
   `Actual Checksum   : ${replayRun.actualFinalChecksum}`,
-  `Verified          : ${replayRun.verified ? "yes" : "no"}`
+  `Verified          : ${replayRun.verified ? "yes" : "no"}`,
 ].join("\n");
 
 console.log(renderAsciiFrame(renderModel));

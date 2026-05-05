@@ -1,6 +1,1 @@
-export type MissionStatus =
-  | "not-started"
-  | "running"
-  | "succeeded"
-  | "failed"
-  | "aborted";
+export type MissionStatus = "not-started" | "running" | "succeeded" | "failed" | "aborted";

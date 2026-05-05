@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { createGridPosition, createStoppedPlayerVehicle, createTargetVehicle } from "@drift-pursuit-grid/domain";
+import {
+  createGridPosition,
+  createStoppedPlayerVehicle,
+  createTargetVehicle,
+} from "@drift-pursuit-grid/domain";
 import type { PlayerVehicle, TrafficVehicle } from "@drift-pursuit-grid/domain";
 
 import { updateCollisionEngine } from "./collision-engine.js";

@@ -1,9 +1,9 @@
-import { mapKeyToCommandKind } from "../../../packages/input-system/src"; 
+import { mapKeyToCommandKind } from "../../../packages/input-system/src";
+import { projectAsciiRenderModel, renderAsciiFrame } from "@drift-pursuit-grid/renderer-ascii";
 import {
-  projectAsciiRenderModel,
-  renderAsciiFrame
-} from "@drift-pursuit-grid/renderer-ascii";
-import { advanceSimulationTick, createSimulationRuntime } from "@drift-pursuit-grid/simulation-core";
+  advanceSimulationTick,
+  createSimulationRuntime,
+} from "@drift-pursuit-grid/simulation-core";
 import type { PlayerCommand } from "@drift-pursuit-grid/contracts";
 
 type TerminalInputState = {
@@ -14,7 +14,7 @@ type TerminalInputState = {
 function createInitialInputState(): TerminalInputState {
   return {
     commands: [],
-    shouldQuit: false
+    shouldQuit: false,
   };
 }
 
@@ -26,7 +26,7 @@ function renderRuntime(runtime: ReturnType<typeof createSimulationRuntime>): voi
   const renderModel = projectAsciiRenderModel(runtime.authoritativeState, {
     width: 72,
     height: 20,
-    eventFeedLimit: 8
+    eventFeedLimit: 8,
   });
 
   clearTerminal();
@@ -39,7 +39,7 @@ export function runRealtimeTerminalDemo(): void {
   let runtime = createSimulationRuntime({
     scenarioId: "showcase.realtime-terminal",
     seed: 20260502,
-    tickDurationMs: 100
+    tickDurationMs: 100,
   });
 
   let inputState = createInitialInputState();
@@ -57,7 +57,7 @@ export function runRealtimeTerminalDemo(): void {
     if (commandKind === "quit") {
       inputState = {
         ...inputState,
-        shouldQuit: true
+        shouldQuit: true,
       };
 
       return;
@@ -73,9 +73,9 @@ export function runRealtimeTerminalDemo(): void {
           {
             kind: commandKind,
             tick: nextTick,
-            source: "keyboard"
-          }
-        ]
+            source: "keyboard",
+          },
+        ],
       };
     }
   });
@@ -98,8 +98,8 @@ export function runRealtimeTerminalDemo(): void {
     inputState = {
       ...inputState,
       commands: inputState.commands.filter(
-        (command) => command.tick > runtime.authoritativeState.tick
-      )
+        (command) => command.tick > runtime.authoritativeState.tick,
+      ),
     };
 
     renderRuntime(runtime);

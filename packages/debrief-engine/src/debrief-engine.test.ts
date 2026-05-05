@@ -3,11 +3,11 @@ import type { SimulationEvent } from "@drift-pursuit-grid/contracts";
 import {
   createGridPosition,
   createInitialPursuitState,
-  createStoppedPlayerVehicle
+  createStoppedPlayerVehicle,
 } from "@drift-pursuit-grid/domain";
 import {
   createAuthoritativeSimulationState,
-  reduceAuthoritativeState
+  reduceAuthoritativeState,
 } from "@drift-pursuit-grid/state-store";
 
 import { createDebriefSummary, renderDebriefSummary } from "./debrief-engine.js";
@@ -23,33 +23,33 @@ function createTestState() {
     missionProgress: {
       missionId: "test.debrief",
       status: "in-progress",
-      completedObjectiveIds: []
-    }
+      completedObjectiveIds: [],
+    },
   });
 }
 
 describe("Debrief engine", () => {
   it("extracts key events from the event stream", () => {
     const events: readonly SimulationEvent[] = [
-  {
-    kind: "vehicle-updated",
-    tick: 1,
-    message: "Vehicle updated.",
-  },
-  {
-    kind: "collision-detected",
-    tick: 2,
-    message: "Collision detected.",
-    collisionKind: "traffic-scrape",
-    severity: "minor",
-  },
-  {
-    kind: "incident-created",
-    tick: 3,
-    message: "Incident created.",
-    incidentId: "incident-test-001",
-  },
-] as const;
+      {
+        kind: "vehicle-updated",
+        tick: 1,
+        message: "Vehicle updated.",
+      },
+      {
+        kind: "collision-detected",
+        tick: 2,
+        message: "Collision detected.",
+        collisionKind: "traffic-scrape",
+        severity: "minor",
+      },
+      {
+        kind: "incident-created",
+        tick: 3,
+        message: "Incident created.",
+        incidentId: "incident-test-001",
+      },
+    ] as const;
 
     const extracted = extractDebriefEvents(events);
 
@@ -78,9 +78,9 @@ describe("Debrief engine", () => {
           tick: 2,
           message: "Collision detected with traffic-1. Severity: minor.",
           collisionKind: "traffic-scrape",
-          severity: "minor"
-        }
-      ]
+          severity: "minor",
+        },
+      ],
     });
 
     const summary = createDebriefSummary(stateWithCollision);

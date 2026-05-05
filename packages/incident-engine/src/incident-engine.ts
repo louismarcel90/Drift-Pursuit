@@ -25,7 +25,7 @@ export function updateIncidentEngine(input: IncidentEngineInput): IncidentEngine
 
   const activeIncidents = updateIncidentLifecycle({
     tick: input.tick,
-    incidents: input.incidents
+    incidents: input.incidents,
   });
 
   const spawnResult = maybeSpawnIncident({
@@ -33,14 +33,14 @@ export function updateIncidentEngine(input: IncidentEngineInput): IncidentEngine
     playerPosition: input.playerPosition,
     activeIncidents,
     rng: input.rng,
-    config
+    config,
   });
 
   return {
-  incidents: spawnResult.incidents,
-  rng: spawnResult.rng,
-  ...(spawnResult.createdIncident !== undefined && {
-    createdIncident: spawnResult.createdIncident,
-  }),
-};
+    incidents: spawnResult.incidents,
+    rng: spawnResult.rng,
+    ...(spawnResult.createdIncident !== undefined && {
+      createdIncident: spawnResult.createdIncident,
+    }),
+  };
 }

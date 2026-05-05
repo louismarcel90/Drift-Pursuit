@@ -10,48 +10,48 @@ export const defaultKeyBindings: readonly KeyBinding[] = [
   {
     key: "w",
     commandKind: "accelerate",
-    description: "Accelerate"
+    description: "Accelerate",
   },
   {
     key: "s",
     commandKind: "brake",
-    description: "Brake"
+    description: "Brake",
   },
   {
     key: "a",
     commandKind: "steer-left",
-    description: "Steer left"
+    description: "Steer left",
   },
   {
     key: "d",
     commandKind: "steer-right",
-    description: "Steer right"
+    description: "Steer right",
   },
   {
     key: " ",
     commandKind: "handbrake",
-    description: "Handbrake"
+    description: "Handbrake",
   },
   {
     key: "p",
     commandKind: "pause",
-    description: "Pause"
+    description: "Pause",
   },
   {
     key: "r",
     commandKind: "resume",
-    description: "Resume"
+    description: "Resume",
   },
   {
     key: "q",
     commandKind: "quit",
-    description: "Quit"
-  }
+    description: "Quit",
+  },
 ];
 
 export function mapKeyToCommandKind(
   key: string,
-  bindings: readonly KeyBinding[] = defaultKeyBindings
+  bindings: readonly KeyBinding[] = defaultKeyBindings,
 ): PlayerCommandKind | undefined {
   return bindings.find((binding) => binding.key === key)?.commandKind;
 }

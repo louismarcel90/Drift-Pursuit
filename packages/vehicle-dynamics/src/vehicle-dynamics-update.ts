@@ -8,11 +8,7 @@ export function updatePlayerVehicleDynamics(
 ): PlayerVehicle {
   const nextSpeed = calculateNextSpeed(vehicle.dynamics.speed, intent);
 
-  const nextDriftFactor = calculateNextDriftFactor(
-    vehicle.dynamics.driftFactor,
-    nextSpeed,
-    intent,
-  );
+  const nextDriftFactor = calculateNextDriftFactor(vehicle.dynamics.driftFactor, nextSpeed, intent);
 
   const nextControlState = nextDriftFactor > 0 ? "drifting" : "stable";
 
@@ -27,10 +23,7 @@ export function updatePlayerVehicleDynamics(
   };
 }
 
-function calculateNextSpeed(
-  currentSpeed: number,
-  intent: VehicleControlIntent,
-): number {
+function calculateNextSpeed(currentSpeed: number, intent: VehicleControlIntent): number {
   if (intent.brake) {
     return Math.max(0, currentSpeed - 2);
   }

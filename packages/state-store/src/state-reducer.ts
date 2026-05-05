@@ -1,4 +1,10 @@
-import type { PlayerVehicle, PursuitState, TrafficVehicle, TargetVehicle, Incident } from "@drift-pursuit-grid/domain";
+import type {
+  PlayerVehicle,
+  PursuitState,
+  TrafficVehicle,
+  TargetVehicle,
+  Incident,
+} from "@drift-pursuit-grid/domain";
 
 import type { AuthoritativeSimulationState } from "./authoritative-state.js";
 import { assertAuthoritativeStateIsValid } from "./state-guards.js";
@@ -40,7 +46,7 @@ export type StateTransition =
   | {
       readonly kind: "replace-degraded-modes";
       readonly degradedModes: readonly DegradedMode[];
-    }
+    };
 
 export function reduceAuthoritativeState(
   state: AuthoritativeSimulationState,
@@ -105,12 +111,12 @@ function applyTransition(
     case "replace-incidents":
       return {
         ...state,
-        incidents: transition.incidents
+        incidents: transition.incidents,
       };
     case "replace-degraded-modes":
       return {
         ...state,
-        degradedModes: transition.degradedModes
+        degradedModes: transition.degradedModes,
       };
   }
 }

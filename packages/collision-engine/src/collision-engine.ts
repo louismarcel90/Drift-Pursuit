@@ -22,16 +22,16 @@ export type CollisionEngineResult = {
 export function updateCollisionEngine(input: CollisionEngineInput): CollisionEngineResult {
   const config = input.config ?? defaultCollisionEngineConfig;
 
-const detectionResult = detectNearestCollision({
-  playerVehicle: input.playerVehicle,
-  candidates: createCollisionCandidates({
-  ...(input.targetVehicle !== undefined && {
-    targetVehicle: input.targetVehicle,
-  }),
-  trafficVehicles: input.trafficVehicles,
-}),
-  config,
-});
+  const detectionResult = detectNearestCollision({
+    playerVehicle: input.playerVehicle,
+    candidates: createCollisionCandidates({
+      ...(input.targetVehicle !== undefined && {
+        targetVehicle: input.targetVehicle,
+      }),
+      trafficVehicles: input.trafficVehicles,
+    }),
+    config,
+  });
   if (!detectionResult.collided) {
     return {
       playerVehicle: input.playerVehicle,

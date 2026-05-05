@@ -15,9 +15,7 @@ function projectVehicleSnapshot(vehicle: Vehicle): VehicleSnapshot {
   };
 }
 
-export function projectSimulationSnapshot(
-  state: AuthoritativeSimulationState,
-): SimulationSnapshot {
+export function projectSimulationSnapshot(state: AuthoritativeSimulationState): SimulationSnapshot {
   return {
     scenarioId: state.scenarioId,
     seed: state.seed,

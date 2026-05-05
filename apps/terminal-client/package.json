@@ -23,9 +23,7 @@
     "@drift-pursuit-grid/debrief-engine": "workspace:*",
     "@drift-pursuit-grid/scenario-kit": "workspace:*",
     "@drift-pursuit-grid/evidence-engine": "workspace:*"
-
   },
-  
   "devDependencies": {
     "@drift-pursuit-grid/shared-config": "workspace:*",
     "@drift-pursuit-grid/simulation-core": "workspace:*"

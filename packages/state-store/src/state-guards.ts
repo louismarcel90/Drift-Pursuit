@@ -17,16 +17,11 @@ export type StateGuardResult = {
   readonly violations: readonly StateGuardViolation[];
 };
 
-function createViolation(
-  code: StateGuardViolationCode,
-  message: string,
-): StateGuardViolation {
+function createViolation(code: StateGuardViolationCode, message: string): StateGuardViolation {
   return { code, message };
 }
 
-export function validateAuthoritativeState(
-  state: AuthoritativeSimulationState,
-): StateGuardResult {
+export function validateAuthoritativeState(state: AuthoritativeSimulationState): StateGuardResult {
   const violations: StateGuardViolation[] = [];
 
   if (state.tick < 0) {
@@ -51,10 +46,7 @@ export function validateAuthoritativeState(
     );
   }
 
-  if (
-    state.missionStatus === "completed" &&
-    state.missionProgress.status !== "completed"
-  ) {
+  if (state.missionStatus === "completed" && state.missionProgress.status !== "completed") {
     violations.push(
       createViolation(
         "completed-mission-requires-completed-status",
@@ -63,10 +55,7 @@ export function validateAuthoritativeState(
     );
   }
 
-  if (
-    state.pursuitState.lockState === "lost" &&
-    state.pursuitState.lastReasonCode === undefined
-  ) {
+  if (state.pursuitState.lockState === "lost" && state.pursuitState.lastReasonCode === undefined) {
     violations.push(
       createViolation(
         "pursuit-loss-without-reason",
@@ -81,9 +70,7 @@ export function validateAuthoritativeState(
   };
 }
 
-export function assertAuthoritativeStateIsValid(
-  state: AuthoritativeSimulationState,
-): void {
+export function assertAuthoritativeStateIsValid(state: AuthoritativeSimulationState): void {
   const result = validateAuthoritativeState(state);
 
   if (!result.valid) {
