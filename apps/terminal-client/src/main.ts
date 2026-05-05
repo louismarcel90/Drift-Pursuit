@@ -20,7 +20,7 @@ import {
 const loadedScenario = loadBuiltInScenario("showcase.perfect-storm");
 const scenario = loadedScenario.scenario.definition;
 
-const initialRun = runSimulationForReplayRecord({
+const finalRun = runSimulationForReplayRecord({
   scenarioId: scenario.id,
   seed: scenario.seed,
   tickDurationMs: scenario.tickDurationMs,
@@ -28,50 +28,76 @@ const initialRun = runSimulationForReplayRecord({
   inputLog: loadedScenario.inputLog,
 });
 
-const replayRun = replayFromRecord(initialRun.replayRecord);
-const verification = verifyReplayRecord(initialRun.replayRecord);
+const replayRun = replayFromRecord(finalRun.replayRecord);
+const verification = verifyReplayRecord(finalRun.replayRecord);
 const debriefSummary = createDebriefSummary(replayRun.finalState);
 
 const evidencePack = createEvidencePack({
   scenario,
-  replayRecord: initialRun.replayRecord,
+  replayRecord: finalRun.replayRecord,
   replayVerification: verification,
   finalState: replayRun.finalState,
   debrief: debriefSummary,
 });
 
-const renderModel = projectAsciiRenderModel(replayRun.finalState, {
-  width: 72,
-  height: 20,
-  eventFeedLimit: 8,
-});
+let currentTick = 1;
 
-const scenarioSummary = [
-  "",
-  "SCENARIO",
-  `Id         : ${scenario.id}`,
-  `Title      : ${scenario.title}`,
-  `Mode       : ${scenario.mode}`,
-  `Difficulty : ${scenario.difficulty}`,
-  `Ticks      : ${scenario.totalTicks}`,
-  `Traffic    : ${scenario.trafficProfile}`,
-  `Incidents  : ${scenario.incidentProfile}`,
-  `Degraded   : ${scenario.degradedProfile}`,
-].join("\n");
+const renderTick = (): void => {
+  const tickRun = runSimulationForReplayRecord({
+    scenarioId: scenario.id,
+    seed: scenario.seed,
+    tickDurationMs: scenario.tickDurationMs,
+    totalTicks: currentTick,
+    inputLog: loadedScenario.inputLog,
+  });
 
-const replaySummary = [
-  "",
-  "REPLAY VERIFICATION",
-  `Status            : ${verification.status}`,
-  `Expected Checksum : ${initialRun.replayRecord.expectedFinalChecksum}`,
-  `Actual Checksum   : ${replayRun.actualFinalChecksum}`,
-  `Verified          : ${replayRun.verified ? "yes" : "no"}`,
-].join("\n");
+  const renderModel = projectAsciiRenderModel(tickRun.finalState, {
+    width: 72,
+    height: 20,
+    eventFeedLimit: 8,
+  });
 
-console.log(renderAsciiFrame(renderModel));
-console.log(scenarioSummary);
-console.log(replaySummary);
-console.log("");
-console.log(renderDebriefSummary(debriefSummary));
-console.log("");
-console.log(renderEvidencePackSummary(evidencePack));
+  console.clear();
+  console.log(renderAsciiFrame(renderModel));
+
+  console.log("");
+  console.log("LIVE RUN");
+  console.log(`Scenario : ${scenario.id}`);
+  console.log(`Tick     : ${currentTick}/${scenario.totalTicks}`);
+  console.log(`Seed     : ${scenario.seed}`);
+  console.log(`Mode     : ${scenario.mode}`);
+
+  currentTick += 1;
+
+  if (currentTick > scenario.totalTicks) {
+    clearInterval(timer);
+
+    console.log("");
+    console.log("SCENARIO");
+    console.log(`Id         : ${scenario.id}`);
+    console.log(`Title      : ${scenario.title}`);
+    console.log(`Mode       : ${scenario.mode}`);
+    console.log(`Difficulty : ${scenario.difficulty}`);
+    console.log(`Ticks      : ${scenario.totalTicks}`);
+    console.log(`Traffic    : ${scenario.trafficProfile}`);
+    console.log(`Incidents  : ${scenario.incidentProfile}`);
+    console.log(`Degraded   : ${scenario.degradedProfile}`);
+
+    console.log("");
+    console.log("REPLAY VERIFICATION");
+    console.log(`Status            : ${verification.status}`);
+    console.log(`Expected Checksum : ${finalRun.replayRecord.expectedFinalChecksum}`);
+    console.log(`Actual Checksum   : ${replayRun.actualFinalChecksum}`);
+    console.log(`Verified          : ${replayRun.verified ? "yes" : "no"}`);
+
+    console.log("");
+    console.log(renderDebriefSummary(debriefSummary));
+
+    console.log("");
+    console.log(renderEvidencePackSummary(evidencePack));
+  }
+};
+
+const timer = setInterval(renderTick, scenario.tickDurationMs);
+
+renderTick();

@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "pnpm --filter @drift-pursuit-grid/terminal-client dev",
+    "dev:realtime": "pnpm --filter @drift-pursuit-grid/terminal-client dev",
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "lint": "turbo run lint",
