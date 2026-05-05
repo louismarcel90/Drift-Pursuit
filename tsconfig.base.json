@@ -11,9 +11,11 @@
       "@drift-pursuit-grid/simulation-core": ["./packages/simulation-core/src/index.ts"],
       "@drift-pursuit-grid/state-store": ["./packages/state-store/src/index.ts"],
       "@drift-pursuit-grid/vehicle-dynamics": ["./packages/vehicle-dynamics/src/index.ts"],
-      "@drift-pursuit-grid/renderer-ascii": [
-  "./packages/renderer-ascii/src/index.ts"
-]
+      "@drift-pursuit-grid/renderer-ascii": ["./packages/renderer-ascii/src/index.ts"],
+      "@drift-pursuit-grid/scenario-kit": ["./packages/scenario-kit/src/index.ts"],
+      "@drift-pursuit-grid/input-system": ["./packages/input-system/src/index.ts"],
+      "@drift-pursuit-grid/replay-engine": ["./packages/replay-engine/src/index.ts"],
+      "@drift-pursuit-grid/debrief-engine": ["./packages/debrief-engine/src/index.ts"]
     },
     "types": ["node", "vitest"],
     "strict": true,

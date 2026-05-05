@@ -9,6 +9,7 @@ import {
   runSimulationForReplayRecord,
   verifyReplayRecord
 } from "../../../packages/replay-engine/src/index.js";
+import { createEvidencePack, renderEvidencePackSummary } from "../../../packages/evidence-engine/src/index.js";
 
 const loadedScenario = loadBuiltInScenario("showcase.perfect-storm");
 const scenario = loadedScenario.scenario.definition;
@@ -24,6 +25,14 @@ const initialRun = runSimulationForReplayRecord({
 const replayRun = replayFromRecord(initialRun.replayRecord);
 const verification = verifyReplayRecord(initialRun.replayRecord);
 const debriefSummary = createDebriefSummary(replayRun.finalState);
+
+const evidencePack = createEvidencePack({
+  scenario,
+  replayRecord: initialRun.replayRecord,
+  replayVerification: verification,
+  finalState: replayRun.finalState,
+  debrief: debriefSummary
+});
 
 const renderModel = projectAsciiRenderModel(replayRun.finalState, {
   width: 72,
@@ -58,3 +67,5 @@ console.log(scenarioSummary);
 console.log(replaySummary);
 console.log("");
 console.log(renderDebriefSummary(debriefSummary));
+console.log("");
+console.log(renderEvidencePackSummary(evidencePack));

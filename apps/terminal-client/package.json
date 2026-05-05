@@ -21,7 +21,8 @@
     "@drift-pursuit-grid/input-system": "workspace:*",
     "@drift-pursuit-grid/replay-engine": "workspace:*",
     "@drift-pursuit-grid/debrief-engine": "workspace:*",
-    "@drift-pursuit-grid/scenario-kit": "workspace:*"
+    "@drift-pursuit-grid/scenario-kit": "workspace:*",
+    "@drift-pursuit-grid/evidence-engine": "workspace:*"
 
   },
   

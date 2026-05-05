@@ -68,6 +68,9 @@ importers:
       '@drift-pursuit-grid/domain':
         specifier: workspace:*
         version: link:../../packages/domain
+      '@drift-pursuit-grid/evidence-engine':
+        specifier: workspace:*
+        version: link:../../packages/evidence-engine
       '@drift-pursuit-grid/input-system':
         specifier: workspace:*
         version: link:../../packages/input-system
@@ -178,6 +181,28 @@ importers:
       '@drift-pursuit-grid/contracts':
         specifier: workspace:*
         version: link:../contracts
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
+  packages/evidence-engine:
+    dependencies:
+      '@drift-pursuit-grid/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@drift-pursuit-grid/debrief-engine':
+        specifier: workspace:*
+        version: link:../debrief-engine
+      '@drift-pursuit-grid/replay-engine':
+        specifier: workspace:*
+        version: link:../replay-engine
+      '@drift-pursuit-grid/scenario-kit':
+        specifier: workspace:*
+        version: link:../scenario-kit
+      '@drift-pursuit-grid/state-store':
+        specifier: workspace:*
+        version: link:../state-store
     devDependencies:
       '@drift-pursuit-grid/shared-config':
         specifier: workspace:*

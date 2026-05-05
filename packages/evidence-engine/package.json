@@ -1,5 +1,5 @@
 {
-  "name": "@drift-pursuit-grid/replay-engine",
+  "name": "@drift-pursuit-grid/evidence-engine",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,6 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./src/index.ts",
       "default": "./dist/index.js"
     }
   },
@@ -17,14 +16,15 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint .",
     "test": "vitest run --config vitest.config.ts",
-    "test:watch": "vitest --watch",
+    "test:watch": "vitest --watch --config vitest.config.ts",
     "clean": "rimraf dist coverage"
   },
   "dependencies": {
     "@drift-pursuit-grid/contracts": "workspace:*",
-    "@drift-pursuit-grid/simulation-core": "workspace:*",
-    "@drift-pursuit-grid/state-store": "workspace:*",
-    "@drift-pursuit-grid/input-system": "workspace:*"
+    "@drift-pursuit-grid/debrief-engine": "workspace:*",
+    "@drift-pursuit-grid/replay-engine": "workspace:*",
+    "@drift-pursuit-grid/scenario-kit": "workspace:*",
+    "@drift-pursuit-grid/state-store": "workspace:*"
   },
   "devDependencies": {
     "@drift-pursuit-grid/shared-config": "workspace:*"
