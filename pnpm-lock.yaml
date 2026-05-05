@@ -62,6 +62,9 @@ importers:
       '@drift-pursuit-grid/contracts':
         specifier: workspace:*
         version: link:../../packages/contracts
+      '@drift-pursuit-grid/debrief-engine':
+        specifier: workspace:*
+        version: link:../../packages/debrief-engine
       '@drift-pursuit-grid/domain':
         specifier: workspace:*
         version: link:../../packages/domain
@@ -127,6 +130,22 @@ importers:
         version: 0.34.6(@vitest/ui@3.2.4)
 
   packages/contracts:
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
+  packages/debrief-engine:
+    dependencies:
+      '@drift-pursuit-grid/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@drift-pursuit-grid/domain':
+        specifier: workspace:*
+        version: link:../domain
+      '@drift-pursuit-grid/state-store':
+        specifier: workspace:*
+        version: link:../state-store
     devDependencies:
       '@drift-pursuit-grid/shared-config':
         specifier: workspace:*

@@ -1,3 +1,4 @@
+import { createDebriefSummary, renderDebriefSummary } from "../../../packages/debrief-engine/src/index.js";
 import {
   createCommandsFromScriptedInput,
   showcaseScriptedInput
@@ -24,6 +25,7 @@ const initialRun = runSimulationForReplayRecord({
 
 const replayRun = replayFromRecord(initialRun.replayRecord);
 const verification = verifyReplayRecord(initialRun.replayRecord);
+const debriefSummary = createDebriefSummary(replayRun.finalState);
 
 const renderModel = projectAsciiRenderModel(replayRun.finalState, {
   width: 72,
@@ -42,3 +44,5 @@ const replaySummary = [
 
 console.log(renderAsciiFrame(renderModel));
 console.log(replaySummary);
+console.log("");
+console.log(renderDebriefSummary(debriefSummary));

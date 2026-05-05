@@ -9,3 +9,6 @@ export type ReasonCode =
   | "mission-objective-completed"
   | "mission-timeout"
   | "player-aborted"
+  | "degraded-mode-impact"
+  | "clean-intercept"
+  | "high-risk-recovery";

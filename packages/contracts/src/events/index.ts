@@ -4,15 +4,22 @@ export * from "./simulation-event.js";
 
 export type SimulationEvent =
   | MissionStartedEvent
+  | MissionEndedEvent
   | PlayerCommandAcceptedEvent
   | TrafficUpdatedEvent
   | VehicleUpdatedEvent
   | PursuitLockLostEvent
-  | InterceptWindowOpenedEvent
   | PursuitLockAcquiredEvent
+  | InterceptWindowOpenedEvent
+  | InterceptWindowClosedEvent
   | CollisionDetectedEvent
   | TargetUpdatedEvent
-  | IncidentCreatedEvent;
+  | IncidentCreatedEvent
+  | DegradedModeActivatedEvent
+  | DegradedModeRecoveredEvent
+  | ReplayDivergenceDetectedEvent
+  | ReplayCheckpointCreatedEvent
+  | EvidencePackCreatedEvent;
 
 export type MissionStartedEvent = {
   kind: "mission-started";
@@ -78,4 +85,47 @@ export type IncidentCreatedEvent = {
   tick: number;
   message: string;
   incidentId: string;
+};
+
+export type MissionEndedEvent = {
+  kind: "mission-ended";
+  tick: number;
+  message: string;
+  reasonCode: string;
+};
+
+export type DegradedModeActivatedEvent = {
+  kind: "degraded-mode-activated";
+  tick: number;
+  message: string;
+};
+
+export type DegradedModeRecoveredEvent = {
+  kind: "degraded-mode-recovered";
+  tick: number;
+  message: string;
+};
+
+export type ReplayDivergenceDetectedEvent = {
+  kind: "replay-divergence-detected";
+  tick: number;
+  message: string;
+};
+
+export type ReplayCheckpointCreatedEvent = {
+  kind: "replay-checkpoint-created";
+  tick: number;
+  message: string;
+};
+
+export type EvidencePackCreatedEvent = {
+  kind: "evidence-pack-created";
+  tick: number;
+  message: string;
+};
+
+export type InterceptWindowClosedEvent = {
+  kind: "intercept-window-closed";
+  tick: number;
+  message: string;
 };
