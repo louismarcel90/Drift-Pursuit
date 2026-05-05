@@ -6,9 +6,10 @@
   },
   "include": [
     "src/**/*.ts",
-    "../../packages/simulation-core/src/**/*.ts",
     "../../packages/contracts/src/**/*.ts",
     "../../packages/domain/src/**/*.ts",
-    "../../packages/deterministic-rng/src/**/*.ts"
+    "../../packages/deterministic-rng/src/**/*.ts",
+    "../../packages/simulation-core/src/**/*.ts",
+    "../../packages/renderer-ascii/src/**/*.ts"
   ]
 }

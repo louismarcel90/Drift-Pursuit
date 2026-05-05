@@ -1,4 +1,4 @@
-import type { ReasonCode } from "@drift-pursuit-grid/contracts";
+import type {ReasonCode } from "@drift-pursuit-grid/contracts";
 
 export type DebriefHighlightKind =
   | "excellent-control"

@@ -1,18 +1,14 @@
-import js from "@eslint/js";
 import globals from "globals";
-import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
-import tseslint from "typescript-eslint";
-
-const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
+import tsParser from "@typescript-eslint/parser";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
 
 const config = [
   {
     ignores: [
-      "dist/**",
-      "node_modules/**",
-      "coverage/**",
-      ".turbo/**",
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/coverage/**",
+      "**/.turbo/**",
       "**/vitest.config.ts",
     ],
   },
@@ -20,44 +16,51 @@ const config = [
   {
     files: ["**/*.{js,mjs,cjs}"],
     languageOptions: {
+      ecmaVersion: "latest",
+      sourceType: "module",
       globals: {
         ...globals.node,
       },
     },
+    rules: {
+      "no-console": "off",
+    },
   },
-
-  js.configs.recommended,
-  ...tseslint.configs.recommended,
 
   {
     files: ["**/*.ts"],
     languageOptions: {
+      parser: tsParser,
+      ecmaVersion: "latest",
+      sourceType: "module",
       globals: {
         ...globals.node,
       },
-      parserOptions: {
-        project: [
-          "./tsconfig.json",
-          "./apps/*/tsconfig.json",
-          "./apps/*/tsconfig.tools.json",
-          "./packages/*/tsconfig.json",
-          "./packages/*/tsconfig.tools.json",
-        ],
-        tsconfigRootDir: repoRoot,
-      },
+    },
+    plugins: {
+      "@typescript-eslint": tsPlugin,
     },
     rules: {
+      "no-unused-vars": "off",
+
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
+
       "@typescript-eslint/no-explicit-any": "error",
-      "@typescript-eslint/no-unsafe-assignment": "off",
-      "@typescript-eslint/no-unsafe-member-access": "off",
-      "@typescript-eslint/no-unsafe-call": "off",
-      "@typescript-eslint/no-unsafe-return": "off",
+
       "@typescript-eslint/consistent-type-imports": [
         "error",
         {
           prefer: "type-imports",
         },
       ],
+
       "no-console": "off",
     },
   },

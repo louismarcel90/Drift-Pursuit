@@ -1,0 +1,169 @@
+2026-05-04T20:26:08.026Z eslint:cli CLI args: [ 'src', '--no-cache', '--debug' ]
+2026-05-04T20:26:08.032Z eslint:cli Using flat config? true
+2026-05-04T20:26:08.036Z eslint:cli Running on files
+2026-05-04T20:26:08.037Z eslint:flat-eslint Searching for eslint.config.js
+2026-05-04T20:26:08.041Z eslint:flat-eslint Loading config from C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\eslint.config.mjs
+2026-05-04T20:26:08.041Z eslint:flat-eslint Config file URL is file:///C:/Users/didi2/OneDrive/Desktop/Didier%20Mania/Software%20Dev/zProjects/Drift%20Pursuit%20%E2%80%94%20Deterministic%20Urban%20Pursuit/Drift-Pursuit/eslint.config.mjs
+2026-05-04T20:26:08.756Z eslint:rules Loading rule 'consistent-return' (remaining=290)
+2026-05-04T20:26:08.776Z eslint:rules Loading rule 'dot-notation' (remaining=289)
+2026-05-04T20:26:08.784Z eslint:rules Loading rule 'init-declarations' (remaining=288)
+2026-05-04T20:26:08.785Z eslint:rules Loading rule 'max-params' (remaining=287)
+2026-05-04T20:26:08.816Z eslint:rules Loading rule 'no-dupe-class-members' (remaining=286)
+2026-05-04T20:26:08.821Z eslint:rules Loading rule 'no-empty-function' (remaining=285)
+2026-05-04T20:26:08.838Z eslint:rules Loading rule 'no-invalid-this' (remaining=284)
+2026-05-04T20:26:08.840Z eslint:rules Loading rule 'no-loop-func' (remaining=283)
+2026-05-04T20:26:08.842Z eslint:rules Loading rule 'no-loss-of-precision' (remaining=282)
+2026-05-04T20:26:08.844Z eslint:rules Loading rule 'no-magic-numbers' (remaining=281)
+2026-05-04T20:26:08.891Z eslint:rules Loading rule 'no-restricted-imports' (remaining=280)
+2026-05-04T20:26:08.957Z eslint:rules Loading rule 'no-unused-expressions' (remaining=279)
+2026-05-04T20:26:08.960Z eslint:rules Loading rule 'no-useless-constructor' (remaining=278)
+2026-05-04T20:26:08.973Z eslint:rules Loading rule 'prefer-destructuring' (remaining=277)
+2026-05-04T20:26:09.055Z eslint:flat-eslint Deleting cache file at C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\.eslintcache
+2026-05-04T20:26:09.065Z eslint:rules Loading rule 'for-direction' (remaining=290)
+2026-05-04T20:26:09.068Z eslint:rules Loading rule 'no-async-promise-executor' (remaining=289)
+2026-05-04T20:26:09.069Z eslint:rules Loading rule 'no-case-declarations' (remaining=288)
+2026-05-04T20:26:09.069Z eslint:rules Loading rule 'no-compare-neg-zero' (remaining=287)
+2026-05-04T20:26:09.070Z eslint:rules Loading rule 'no-cond-assign' (remaining=286)
+2026-05-04T20:26:09.076Z eslint:rules Loading rule 'no-constant-binary-expression' (remaining=285)
+2026-05-04T20:26:09.077Z eslint:rules Loading rule 'no-constant-condition' (remaining=284)
+2026-05-04T20:26:09.079Z eslint:rules Loading rule 'no-control-regex' (remaining=283)
+2026-05-04T20:26:09.081Z eslint:rules Loading rule 'no-debugger' (remaining=282)
+2026-05-04T20:26:09.082Z eslint:rules Loading rule 'no-delete-var' (remaining=281)
+2026-05-04T20:26:09.082Z eslint:rules Loading rule 'no-dupe-else-if' (remaining=280)
+2026-05-04T20:26:09.083Z eslint:rules Loading rule 'no-duplicate-case' (remaining=279)
+2026-05-04T20:26:09.083Z eslint:rules Loading rule 'no-empty' (remaining=278)
+2026-05-04T20:26:09.084Z eslint:rules Loading rule 'no-empty-character-class' (remaining=277)
+2026-05-04T20:26:09.086Z eslint:rules Loading rule 'no-empty-pattern' (remaining=276)
+2026-05-04T20:26:09.087Z eslint:rules Loading rule 'no-empty-static-block' (remaining=275)
+2026-05-04T20:26:09.088Z eslint:rules Loading rule 'no-ex-assign' (remaining=274)
+2026-05-04T20:26:09.089Z eslint:rules Loading rule 'no-extra-boolean-cast' (remaining=273)
+2026-05-04T20:26:09.090Z eslint:rules Loading rule 'no-fallthrough' (remaining=272)
+2026-05-04T20:26:09.092Z eslint:rules Loading rule 'no-global-assign' (remaining=271)
+2026-05-04T20:26:09.094Z eslint:rules Loading rule 'no-invalid-regexp' (remaining=270)
+2026-05-04T20:26:09.096Z eslint:rules Loading rule 'no-irregular-whitespace' (remaining=269)
+2026-05-04T20:26:09.097Z eslint:rules Loading rule 'no-loss-of-precision' (remaining=268)
+2026-05-04T20:26:09.098Z eslint:rules Loading rule 'no-misleading-character-class' (remaining=267)
+2026-05-04T20:26:09.104Z eslint:rules Loading rule 'no-nonoctal-decimal-escape' (remaining=266)
+2026-05-04T20:26:09.105Z eslint:rules Loading rule 'no-octal' (remaining=265)
+2026-05-04T20:26:09.105Z eslint:rules Loading rule 'no-prototype-builtins' (remaining=264)
+2026-05-04T20:26:09.106Z eslint:rules Loading rule 'no-regex-spaces' (remaining=263)
+2026-05-04T20:26:09.108Z eslint:rules Loading rule 'no-self-assign' (remaining=262)
+2026-05-04T20:26:09.109Z eslint:rules Loading rule 'no-shadow-restricted-names' (remaining=261)
+2026-05-04T20:26:09.110Z eslint:rules Loading rule 'no-sparse-arrays' (remaining=260)
+2026-05-04T20:26:09.111Z eslint:rules Loading rule 'no-unexpected-multiline' (remaining=259)
+2026-05-04T20:26:09.111Z eslint:rules Loading rule 'no-unsafe-finally' (remaining=258)
+2026-05-04T20:26:09.112Z eslint:rules Loading rule 'no-unsafe-optional-chaining' (remaining=257)
+2026-05-04T20:26:09.114Z eslint:rules Loading rule 'no-unused-labels' (remaining=256)
+2026-05-04T20:26:09.115Z eslint:rules Loading rule 'no-unused-private-class-members' (remaining=255)
+2026-05-04T20:26:09.116Z eslint:rules Loading rule 'no-useless-backreference' (remaining=254)
+2026-05-04T20:26:09.117Z eslint:rules Loading rule 'no-useless-catch' (remaining=253)
+2026-05-04T20:26:09.118Z eslint:rules Loading rule 'no-useless-escape' (remaining=252)
+2026-05-04T20:26:09.119Z eslint:rules Loading rule 'require-yield' (remaining=251)
+2026-05-04T20:26:09.120Z eslint:rules Loading rule 'use-isnan' (remaining=250)
+2026-05-04T20:26:09.121Z eslint:rules Loading rule 'valid-typeof' (remaining=249)
+2026-05-04T20:26:09.123Z eslint:rules Loading rule 'no-var' (remaining=248)
+2026-05-04T20:26:09.123Z eslint:rules Loading rule 'prefer-const' (remaining=247)
+2026-05-04T20:26:09.125Z eslint:rules Loading rule 'prefer-rest-params' (remaining=246)
+2026-05-04T20:26:09.126Z eslint:rules Loading rule 'prefer-spread' (remaining=245)
+2026-05-04T20:26:09.137Z eslint:flat-eslint 6 files found in: 82ms
+2026-05-04T20:26:09.141Z eslint:flat-eslint Lint C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.test.ts
+2026-05-04T20:26:09.141Z eslint:linter Linting code for C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.test.ts (pass 1)
+2026-05-04T20:26:09.141Z eslint:linter Verify
+2026-05-04T20:26:09.142Z eslint:linter With flat config: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.test.ts
+2026-05-04T20:26:09.142Z eslint:linter Parsing: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.test.ts
+2026-05-04T20:26:09.172Z eslint:linter Parsing successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.test.ts
+2026-05-04T20:26:09.172Z eslint:linter Scope analysis: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.test.ts
+2026-05-04T20:26:09.172Z eslint:linter Scope analysis successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.test.ts
+2026-05-04T20:26:09.177Z eslint:linter An error occurred while traversing
+2026-05-04T20:26:09.178Z eslint:linter Filename: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.test.ts
+2026-05-04T20:26:09.178Z eslint:linter Parser Options: {
+  tsconfigRootDir: 'C:\\Users\\didi2\\OneDrive\\Desktop\\Didier Mania\\Software Dev\\zProjects\\Drift Pursuit — Deterministic Urban Pursuit\\Drift-Pursuit'
+}
+2026-05-04T20:26:09.178Z eslint:linter Settings: {}
+
+Oops! Something went wrong! :(
+
+ESLint: 8.57.1
+
+TypeError: Error while loading rule '@typescript-eslint/no-unused-expressions': Cannot read properties of undefined (reading 'allowShortCircuit')
+Occurred while linting C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.test.ts
+    at Object.create (C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\node_modules\.pnpm\eslint@9.27.0\node_modules\eslint\lib\rules\no-unused-expressions.js:85:5)
+    at create (C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\node_modules\.pnpm\@typescript-eslint+eslint-plugin@8.32.1_@typescript-eslint+parser@8.32.1_eslint@9.27.0_typesc_yyurvcgieeddlbwb5l4mauajp4\node_modules\@typescript-eslint\eslint-plugin\dist\rules\no-unused-expressions.js:30:32)
+    at Object.create (C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\node_modules\.pnpm\@typescript-eslint+utils@8.32.1_eslint@9.27.0_typescript@5.8.3\node_modules\@typescript-eslint\utils\dist\eslint-utils\RuleCreator.js:31:20)
+    at createRuleListeners (C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\node_modules\.pnpm\eslint@8.57.1\node_modules\eslint\lib\linter\linter.js:895:21)
+    at C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\node_modules\.pnpm\eslint@8.57.1\node_modules\eslint\lib\linter\linter.js:1066:110
+    at Array.forEach (<anonymous>)
+    at runRules (C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\node_modules\.pnpm\eslint@8.57.1\node_modules\eslint\lib\linter\linter.js:1003:34)
+    at Linter._verifyWithFlatConfigArrayAndWithoutProcessors (C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\node_modules\.pnpm\eslint@8.57.1\node_modules\eslint\lib\linter\linter.js:1730:31)
+    at Linter._verifyWithFlatConfigArray (C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\node_modules\.pnpm\eslint@8.57.1\node_modules\eslint\lib\linter\linter.js:1861:21)
+    at Linter.verify (C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\node_modules\.pnpm\eslint@8.57.1\node_modules\eslint\lib\linter\linter.js:1433:65)
+2026-05-04T20:26:09.179Z eslint:flat-eslint Lint C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-config.ts
+2026-05-04T20:26:09.179Z eslint:linter Linting code for C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-config.ts (pass 1)
+2026-05-04T20:26:09.179Z eslint:linter Verify
+2026-05-04T20:26:09.179Z eslint:linter With flat config: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-config.ts
+2026-05-04T20:26:09.179Z eslint:linter Parsing: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-config.ts
+2026-05-04T20:26:09.181Z eslint:linter Parsing successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-config.ts
+2026-05-04T20:26:09.182Z eslint:linter Scope analysis: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-config.ts
+2026-05-04T20:26:09.182Z eslint:linter Scope analysis successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-config.ts
+2026-05-04T20:26:09.183Z eslint:linter An error occurred while traversing
+2026-05-04T20:26:09.183Z eslint:linter Filename: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-config.ts
+2026-05-04T20:26:09.183Z eslint:linter Parser Options: {
+  tsconfigRootDir: 'C:\\Users\\didi2\\OneDrive\\Desktop\\Didier Mania\\Software Dev\\zProjects\\Drift Pursuit — Deterministic Urban Pursuit\\Drift-Pursuit'
+}
+2026-05-04T20:26:09.183Z eslint:linter Settings: {}
+2026-05-04T20:26:09.183Z eslint:flat-eslint Lint C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\index.ts
+2026-05-04T20:26:09.183Z eslint:linter Linting code for C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\index.ts (pass 1)
+2026-05-04T20:26:09.183Z eslint:linter Verify
+2026-05-04T20:26:09.183Z eslint:linter With flat config: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\index.ts
+2026-05-04T20:26:09.183Z eslint:linter Parsing: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\index.ts
+2026-05-04T20:26:09.184Z eslint:linter Parsing successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\index.ts
+2026-05-04T20:26:09.184Z eslint:linter Scope analysis: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\index.ts
+2026-05-04T20:26:09.184Z eslint:linter Scope analysis successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\index.ts
+2026-05-04T20:26:09.185Z eslint:linter An error occurred while traversing
+2026-05-04T20:26:09.185Z eslint:linter Filename: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\index.ts
+2026-05-04T20:26:09.185Z eslint:linter Parser Options: {
+  tsconfigRootDir: 'C:\\Users\\didi2\\OneDrive\\Desktop\\Didier Mania\\Software Dev\\zProjects\\Drift Pursuit — Deterministic Urban Pursuit\\Drift-Pursuit'
+}
+2026-05-04T20:26:09.185Z eslint:linter Settings: {}
+2026-05-04T20:26:09.185Z eslint:flat-eslint Lint C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-effects.ts
+2026-05-04T20:26:09.185Z eslint:linter Linting code for C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-effects.ts (pass 1)
+2026-05-04T20:26:09.185Z eslint:linter Verify
+2026-05-04T20:26:09.185Z eslint:linter With flat config: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-effects.ts
+2026-05-04T20:26:09.185Z eslint:linter Parsing: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-effects.ts
+2026-05-04T20:26:09.193Z eslint:linter Parsing successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-effects.ts
+2026-05-04T20:26:09.193Z eslint:linter Scope analysis: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-effects.ts
+2026-05-04T20:26:09.193Z eslint:linter Scope analysis successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-effects.ts
+2026-05-04T20:26:09.194Z eslint:linter An error occurred while traversing
+2026-05-04T20:26:09.194Z eslint:linter Filename: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-effects.ts
+2026-05-04T20:26:09.194Z eslint:linter Parser Options: {
+  tsconfigRootDir: 'C:\\Users\\didi2\\OneDrive\\Desktop\\Didier Mania\\Software Dev\\zProjects\\Drift Pursuit — Deterministic Urban Pursuit\\Drift-Pursuit'
+}
+2026-05-04T20:26:09.194Z eslint:linter Settings: {}
+2026-05-04T20:26:09.194Z eslint:flat-eslint Lint C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-detection.ts
+2026-05-04T20:26:09.194Z eslint:linter Linting code for C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-detection.ts (pass 1)
+2026-05-04T20:26:09.194Z eslint:linter Verify
+2026-05-04T20:26:09.194Z eslint:linter With flat config: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-detection.ts
+2026-05-04T20:26:09.194Z eslint:linter Parsing: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-detection.ts
+2026-05-04T20:26:09.207Z eslint:linter Parsing successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-detection.ts
+2026-05-04T20:26:09.207Z eslint:linter Scope analysis: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-detection.ts
+2026-05-04T20:26:09.207Z eslint:linter Scope analysis successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-detection.ts
+2026-05-04T20:26:09.208Z eslint:linter An error occurred while traversing
+2026-05-04T20:26:09.209Z eslint:linter Filename: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-detection.ts
+2026-05-04T20:26:09.209Z eslint:linter Parser Options: {
+  tsconfigRootDir: 'C:\\Users\\didi2\\OneDrive\\Desktop\\Didier Mania\\Software Dev\\zProjects\\Drift Pursuit — Deterministic Urban Pursuit\\Drift-Pursuit'
+}
+2026-05-04T20:26:09.209Z eslint:linter Settings: {}
+2026-05-04T20:26:09.209Z eslint:flat-eslint Lint C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.ts
+2026-05-04T20:26:09.209Z eslint:linter Linting code for C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.ts (pass 1)
+2026-05-04T20:26:09.209Z eslint:linter Verify
+2026-05-04T20:26:09.209Z eslint:linter With flat config: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.ts
+2026-05-04T20:26:09.209Z eslint:linter Parsing: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.ts
+2026-05-04T20:26:09.212Z eslint:linter Parsing successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.ts
+2026-05-04T20:26:09.212Z eslint:linter Scope analysis: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.ts
+2026-05-04T20:26:09.212Z eslint:linter Scope analysis successful: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.ts
+2026-05-04T20:26:09.213Z eslint:linter An error occurred while traversing
+2026-05-04T20:26:09.213Z eslint:linter Filename: C:\Users\didi2\OneDrive\Desktop\Didier Mania\Software Dev\zProjects\Drift Pursuit — Deterministic Urban Pursuit\Drift-Pursuit\packages\collision-engine\src\collision-engine.ts
+2026-05-04T20:26:09.213Z eslint:linter Parser Options: {
+  tsconfigRootDir: 'C:\\Users\\didi2\\OneDrive\\Desktop\\Didier Mania\\Software Dev\\zProjects\\Drift Pursuit — Deterministic Urban Pursuit\\Drift-Pursuit'
+}
+2026-05-04T20:26:09.214Z eslint:linter Settings: {}

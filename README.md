@@ -4,7 +4,7 @@
 - Evasion & Tactical Mobility Simulation Platform🏆
 
 > Terminal ASCII Premium. Replayable. Explainable <br/>
-> Design Discussion ongoing (done) --- final requirements ongoing
+
 
 ![Node](https://img.shields.io/badge/node-%3E%3D18-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
