@@ -77,6 +77,9 @@ importers:
       '@drift-pursuit-grid/replay-engine':
         specifier: workspace:*
         version: link:../../packages/replay-engine
+      '@drift-pursuit-grid/scenario-kit':
+        specifier: workspace:*
+        version: link:../../packages/scenario-kit
       '@drift-pursuit-grid/simulation-core':
         specifier: workspace:*
         version: link:../../packages/simulation-core
@@ -246,6 +249,19 @@ importers:
       '@drift-pursuit-grid/state-store':
         specifier: workspace:*
         version: link:../state-store
+    devDependencies:
+      '@drift-pursuit-grid/shared-config':
+        specifier: workspace:*
+        version: link:../shared-config
+
+  packages/scenario-kit:
+    dependencies:
+      '@drift-pursuit-grid/contracts':
+        specifier: workspace:*
+        version: link:../contracts
+      '@drift-pursuit-grid/input-system':
+        specifier: workspace:*
+        version: link:../input-system
     devDependencies:
       '@drift-pursuit-grid/shared-config':
         specifier: workspace:*

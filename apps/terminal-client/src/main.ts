@@ -1,8 +1,5 @@
 import { createDebriefSummary, renderDebriefSummary } from "../../../packages/debrief-engine/src/index.js";
-import {
-  createCommandsFromScriptedInput,
-  showcaseScriptedInput
-} from "../../../packages/input-system/src/index.js";
+import { loadBuiltInScenario } from "../../../packages/scenario-kit/src/index.js";
 import {
   projectAsciiRenderModel,
   renderAsciiFrame
@@ -13,14 +10,15 @@ import {
   verifyReplayRecord
 } from "../../../packages/replay-engine/src/index.js";
 
-const inputLog = createCommandsFromScriptedInput(showcaseScriptedInput);
+const loadedScenario = loadBuiltInScenario("showcase.perfect-storm");
+const scenario = loadedScenario.scenario.definition;
 
 const initialRun = runSimulationForReplayRecord({
-  scenarioId: "showcase.perfect-storm",
-  seed: 20260502,
-  tickDurationMs: 100,
-  totalTicks: 24,
-  inputLog
+  scenarioId: scenario.id,
+  seed: scenario.seed,
+  tickDurationMs: scenario.tickDurationMs,
+  totalTicks: scenario.totalTicks,
+  inputLog: loadedScenario.inputLog
 });
 
 const replayRun = replayFromRecord(initialRun.replayRecord);
@@ -33,6 +31,19 @@ const renderModel = projectAsciiRenderModel(replayRun.finalState, {
   eventFeedLimit: 8
 });
 
+const scenarioSummary = [
+  "",
+  "SCENARIO",
+  `Id         : ${scenario.id}`,
+  `Title      : ${scenario.title}`,
+  `Mode       : ${scenario.mode}`,
+  `Difficulty : ${scenario.difficulty}`,
+  `Ticks      : ${scenario.totalTicks}`,
+  `Traffic    : ${scenario.trafficProfile}`,
+  `Incidents  : ${scenario.incidentProfile}`,
+  `Degraded   : ${scenario.degradedProfile}`
+].join("\n");
+
 const replaySummary = [
   "",
   "REPLAY VERIFICATION",
@@ -43,6 +54,7 @@ const replaySummary = [
 ].join("\n");
 
 console.log(renderAsciiFrame(renderModel));
+console.log(scenarioSummary);
 console.log(replaySummary);
 console.log("");
 console.log(renderDebriefSummary(debriefSummary));

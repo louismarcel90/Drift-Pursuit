@@ -1,27 +1,28 @@
 {
-  "name": "@drift-pursuit-grid/input-system",
+  "name": "@drift-pursuit-grid/scenario-kit",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "main": "./dist/index.ts",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./src/index.ts",
-      "import": "./dist/index.js"
+      "import": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "lint": "eslint --config ../../eslint.config.mjs .",
-    "test": "vitest run --config vitest.config.ts --passWithNoTests",
-    "test:watch": "vitest --watch",
+    "lint": "eslint .",
+    "test": "vitest run --config vitest.config.ts --no-passWithNoTests",
+    "test:watch": "vitest --watch --config vitest.config.ts",
     "clean": "rimraf dist coverage"
   },
   "dependencies": {
-    "@drift-pursuit-grid/contracts": "workspace:*"
+    "@drift-pursuit-grid/contracts": "workspace:*",
+    "@drift-pursuit-grid/input-system": "workspace:*"
   },
   "devDependencies": {
     "@drift-pursuit-grid/shared-config": "workspace:*"
