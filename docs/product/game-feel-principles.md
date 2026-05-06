@@ -1,65 +1,80 @@
 # Game Feel Principles
 
+## Purpose
+
+This document defines how DRIFT PURSUIT GRID maintains an engaging player experience.
+
+---
+
 ## Principle 1 — Immediate Feedback
 
-Every player command must create visible feedback quickly.
+Every input must produce a visible effect within one tick.
 
-Acceleration, braking, turning, drifting, collision, recovery, and pursuit pressure must be felt immediately.
+---
 
-## Principle 2 — Readable Drift
+## Principle 2 — Readable Motion
 
-Drift must feel expressive but understandable.
+The player must understand:
 
-The player should understand:
-
-- when the vehicle is stable
-- when the vehicle is sliding
-- when control is being lost
-- when recovery is possible
-- when the turn was too aggressive
-
-## Principle 3 — Controlled Tension
-
-The game must constantly create pressure without becoming chaotic.
-
-Sources of tension include:
-
-- target distance
-- traffic density
-- drift instability
-- limited reaction time
-- route hazards
-- degraded indicators
-- collision risk
-
-## Principle 4 — Understandable Failure
-
-Failure must never feel random.
-
-Every major failure should have a clear reason code, such as:
-
-- target lost because distance exceeded limit
-- target lost because line of sight was broken
-- interception failed because approach angle was unsafe
-- collision caused control loss
-- excessive speed caused drift instability
-
-## Principle 5 — Minimal But Powerful HUD
-
-The HUD must show only what improves gameplay clarity.
-
-Required HUD signals:
-
+- direction
 - speed
-- drift state
-- target distance
-- pursuit status
-- risk level
-- score
-- critical alerts
+- drift
+- proximity
 
-## Principle 6 — Arcade Feel, System-Grade Foundation
+in under 2 seconds.
 
-The surface experience should feel fast and fun.
+---
 
-The underlying system should remain deterministic, modular, testable, and explainable.
+## Principle 3 — Controlled Chaos
+
+The world feels dynamic, but not random.
+
+- traffic is believable
+- incidents are explainable
+- target behavior is readable
+
+---
+
+## Principle 4 — Tension
+
+The player should always feel risk:
+
+- losing target
+- collision
+- oversteering
+- lack of control
+
+---
+
+## Principle 5 — Recoverability
+
+Mistakes must be:
+
+- punishable
+- but recoverable
+
+---
+
+## Principle 6 — Depth Under Simplicity
+
+Controls are simple.
+
+System is deep.
+
+---
+
+## Principle 7 — Explainable Failure
+
+If the player loses:
+
+- there is a reason
+- the system can explain it
+- the debrief can show it
+
+---
+
+## Reviewer Signal
+
+Game feel is not accidental.
+
+It is engineered.

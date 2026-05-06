@@ -12,7 +12,7 @@ export type PlayerCommandKind =
   | "replay-fast-forward"
   | "quit";
 
-export type PlayerCommandSource = "keyboard" | "script" | "replay";
+export type PlayerCommandSource = "keyboard" | "script" | "replay ";
 
 export type PlayerCommand = {
   readonly kind: PlayerCommandKind;

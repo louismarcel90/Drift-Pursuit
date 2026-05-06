@@ -101,3 +101,4 @@ const renderTick = (): void => {
 const timer = setInterval(renderTick, scenario.tickDurationMs);
 
 renderTick();
+// runRealtimeGame();
